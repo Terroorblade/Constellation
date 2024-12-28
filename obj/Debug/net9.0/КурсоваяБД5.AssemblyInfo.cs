@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("КурсоваяБД5")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de22f737f01196fb79b728118931f1e7de8027c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("КурсоваяБД5")]
 [assembly: System.Reflection.AssemblyTitleAttribute("КурсоваяБД5")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
