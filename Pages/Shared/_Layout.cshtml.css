@@ -1,0 +1,60 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0077cc;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #6361b9;
+  /* box-sizing: border-box; */
+}
+.border-bottom {
+  border-bottom: 1px solid #363250;
+  /* box-sizing: border-box; */
+
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .00);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+  position: absolute; /* Убираем абсолютное или фиксированное позиционирование */
+  bottom: 0; /* Сбрасываем привязку к нижнему краю */
+  width: 100%; /* Опционально: растягиваем на всю ширину */
+  padding: 10px 0; /* Удобство отображения */
+  color: #6c757d; /* Стили для текста */
+}
+html, body {
+  margin: 0; /* Убираем отступы браузера */
+  padding: 0; /* Убираем паддинги */
+  min-height: 100%; /* Растягиваем по высоте окна браузера */
+}
+
+main {
+  padding-bottom: 10px; /* Чтобы основной контент не прилипал к футеру */
+}

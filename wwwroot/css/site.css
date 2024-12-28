@@ -1,0 +1,131 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem rgb(10, 4, 57), 0 0 0 0.25rem #38587b;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* задний фон страницы */
+body {
+ 
+}
+.footer
+{
+  box-sizing: border-box;
+}
+.border-bottom {
+  border-bottom: 1px solid #363250;
+  box-sizing: border-box;
+  
+}
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/фон.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px); /* Размытие фона */
+  z-index: -1; /* Поставить фон на задний план */
+  margin: 0;  /* без отступов */
+  /* background-repeat: repeat-x;  */
+  height: 100vh;
+  width: 100vw;
+  /* background-attachment: fixed; */
+  overflow: hidden;
+}
+.content {
+  position: relative;
+  z-index: 1; /* Поставить контент поверх фона */
+  /* padding: 20px; */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+header {
+  opacity: 0;
+  animation: ani 1.5s forwards;
+}
+.content
+{
+  animation: ani 1.8s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.btn-custom {
+  margin-top: 20px; /* Отступ сверху */
+  padding: 10px 20px; /* Увеличиваем размер кнопки */
+  font-size: 16px; /* Размер текста кнопки */
+  background-color: rgb(38, 38, 109);
+  border-color: #38587b;
+  font-family: Georgia, serif;
+}
+.input-custom {
+  width: 100%; /* Занимает всю ширину контейнера */
+  padding: 10px; /* Внутренний отступ */
+  font-size: 16px; /* Увеличиваем размер текста */
+  margin-bottom: 20px; /* Отступ между полями */
+  font-family: Georgia, serif;
+}
+.form-label {
+  font-weight: bold;
+  margin-bottom: 5px; /* Отступ между надписью и полем */
+  display: block; /* Чтобы надпись располагалась над полем */
+}
+.btn-exit {
+  margin-top: 20px;
+  background-color: #d8dff8;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  /* border-radius: 5px; */
+  cursor: pointer;
+}
+.btn-primary{
+  margin-top: 20px;
+  background-color: #4a6ef1;
+  color: hsl(0, 36%, 95%);
+  border: 1px solid #2e425a;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  /* border-radius: 5px; */
+  cursor: pointer;
+}
+.btn-secondary{
+  margin-top: 20px;
+  background-color: #496a96;
+  color: #ffffff;
+  border: 1px solid #8ea3cd;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  /* border-radius: 5px; */
+  cursor: pointer;
+}

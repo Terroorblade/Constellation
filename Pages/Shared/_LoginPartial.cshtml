@@ -1,0 +1,40 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject DefaultUser DefaultUser
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    string userId = UserManager.GetUserId(User);
+    bool isDefaultUser = await DefaultUser.IsDefaultUserIdExistsAsync(userId);
+    bool isAdmin = User.IsInRole("admin");
+    
+    if (!isAdmin)
+    {
+        <li class="nav-item">
+        
+        if (isDefaultUser)
+        {
+            <a id="manage" class="nav1-link text-dark" asp-page="/User/Profile" asp-route-id="@(await DefaultUser.GetDefaultUserIdByUserIdAsync(userId))" title="Manage">Личный кабинет <b>@UserManager.GetUserName(User)</b></a>
+        }
+        else if (User.IsInRole("default_user"))
+        {
+            <a id="manage" *@ class="nav1-link text-dark" asp-page="/User/Register" asp-route-userid="@userId" title="Register"><b>Завершить регистрацию</b></a>
+        }
+        </li>
+    }
+
+    <li class="nav-item">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+            <button id="logout" type="submit" class="nav1-link btn btn-link text-dark border-0">Выйти</button>
+        </form>
+    </li>
+}
+
+else
+{
+    <li class="nav-item"> <a class="nav1-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Войти</a></li>
+}
+</ul>

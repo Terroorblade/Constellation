@@ -1,0 +1,121 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="background"></div>
+@* <div class="content">  *@
+    <div class="text-center">
+    <style>
+        body{
+            color:aliceblue;
+            font-family: Georgia, serif;
+        }
+    </style>
+    <header>
+        <h1>'Constellation'</h1>
+    <h5>Ставь цели, формируй привычки, и становись лучшей версией себя!</h5>
+    </header>
+@* </div> *@
+</div>
+
+<hr />
+ @if (User.IsInRole("admin"))
+{
+    <div class="admin-panel">
+    <h2>Администрирование</h2>
+        <div class="admin-links">
+            <a asp-page="/User/Index" class="nav-link">Пользователи</a>
+        </div>
+    </div>
+}
+
+else if (User.IsInRole("default_user"))
+{
+    <div class="user-panel">
+        <div class="user-links">
+            <a asp-page="/User/Profile" class="nav-link">Профиль пользователя</a>
+        </div>
+    </div>
+}
+else
+{
+    <p>Пожалуйста, войдите или зарегистрируйтесь.</p>
+}
+
+<div class="text-center">
+    <div class="content"> 
+        <div class="d-flex justify-content-center mt-4">
+            <a asp-page="/User/Login" class="btn btn-primary me-2">Войти</a>
+            <a asp-page="/User/Register" class="btn btn-secondary">Зарегистрироваться</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@* <div class="text-center">
+    <h1>Events</h1>
+</div>
+
+<u1 class="text-left">
+    @foreach (var eventItem in Model.Events)
+    {
+        <li>
+            <strong>@eventItem.Name</strong>: @eventItem.Description (Date: @eventItem.EventDate)
+        </li>
+    }
+</u1>
+
+<h5 class="modal-title">Добавить событие</h5>
+<form method="post">
+    <div class="form-group">
+        <label for="eventName">Название события</label>
+        <input type="text" class="form-control" id="eventName" name="Name" required />
+    </div>
+    <div class="form-group">
+        <label for="eventDescription">Описание</label>
+        <textarea class="form-control" id="eventDescription" name="Description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="eventPriority">Приоритет</label>
+        <select class="form-control" id="eventPriority" name="Priority">
+            <option value="low">Низкий</option>
+            <option value="medium">Средний</option>
+            <option value="high">Высокий</option>
+        </select>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="eventDate">Дата события</label>
+        <input type="text" id="eventDate" name="EventDate" />
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+    </div>
+</form>
+
+<div class="text-center">
+    <h1>Goals</h1>
+</div>
+
+<u1 class="text-left">
+    @foreach (var goalItem in Model.Goals)
+    {
+        <li>
+            <strong>@goalItem.Name</strong>: @goalItem.Description
+            <li><strong>Deadline: @goalItem.Deadline</strong></li>
+            <li><strong>Status</strong>: @goalItem.Status</li>
+        </li>
+    }
+</u1>
+
+@section Scripts
+{
+
+} *@

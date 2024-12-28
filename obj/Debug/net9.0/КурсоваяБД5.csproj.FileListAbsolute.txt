@@ -1,0 +1,9 @@
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.csproj.AssemblyReference.cache
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.GeneratedMSBuildEditorConfig.editorconfig
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.AssemblyInfoInputs.cache
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.AssemblyInfo.cs
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.csproj.CoreCompileInputs.cache
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.MvcApplicationPartsAssemblyInfo.cs
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.MvcApplicationPartsAssemblyInfo.cache
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.RazorAssemblyInfo.cache
+/Users/terroor/КурсоваяБД5сем/КурсоваяБД5/obj/Debug/net9.0/КурсоваяБД5.RazorAssemblyInfo.cs

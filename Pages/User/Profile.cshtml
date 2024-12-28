@@ -1,0 +1,64 @@
+
+@page
+@model КурсоваяБД5.Pages.User.ProfileModel
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+<div class="text-center">
+    <style>
+        h2 {
+            color:aliceblue; /* Цвет заголовка */
+            text-align: center;
+            font-size: 2rem;
+            font-family: Georgia, serif;
+        }
+        label
+        {
+            font-family: Georgia, serif;
+        }
+    </style>
+<div class="background"></div>
+    <h2>Личный кабинет</h2>
+
+    <dt>Имя:</dt>
+    <dd>@Html.DisplayFor(model=>model.Users.Username)</dd>
+    <dt>Email:</dt>
+
+    <dd>
+        @if(Model.Users.Email!=null)
+        {
+            @Html.DisplayFor(model=>model.Users.Email)
+        }
+        else
+        {
+            <a>Не указан</a>
+        }
+    </dd>
+
+
+    <dt>Дата рождения:</dt>
+
+
+    <dd>
+        @if(Model.Users.Birthday!=null)
+        {
+            @Html.DisplayFor(model=>model.Users.Email)
+        }
+        else
+        {
+            <a>Не указан</a>
+        }
+    </dd>
+    
+    <h2>Действия</h2>
+    @* <a asp-page="/User/Edit" asp-route-id="@Model.Users.UserId">Редактировать данные</a> *@
+
+    <a href="/DailySchedule/Calendar" class="btn btn-secondary mt-3">Перейти к календарю</a>
+    <a href="/Test" class="btn btn-secondary mt-3">Пройти тест на анализ сфер жизни</a>
+    <form method="post">
+        <button type="submit" class="btn btn-exit">Выйти</button>
+    </form>
+
+
+
+</div>

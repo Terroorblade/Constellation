@@ -1,0 +1,55 @@
+
+@page
+@using Microsoft.AspNetCore.Identity
+@model КурсоваяБД5.Pages.User.RegisterModel
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="text-center">
+    <style>
+        body{color:aliceblue;
+        }
+    </style>
+    <div class="background"></div>
+    <div class="content">
+    <h2>Регистрация</h2>
+
+   <div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Users.Username" class="control-label"><b>Введите имя пользователя</b></label>
+                <input asp-for="Users.Username" class="form-control" />
+                <span asp-validation-for="Users.Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Users.Email" class="control-label">Введите почту</label>
+                <input asp-for="Users.Email" class="form-control" />
+                <span asp-validation-for="Users.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Users.PasswordHash" class="control-label">Введите пароль</label>
+                <input asp-for="Users.PasswordHash" class="form-control" />
+                <span asp-validation-for="Users.PasswordHash" class="text-danger"></span>
+            </div>
+
+            <p>
+                <div class="form-group">
+                    <input type="submit" value="Зарегистрироваться" class="btn btn-primary" style="background-color: #ffe6f0; border-color: #ffe6f0; color: #333;" />
+                </div>
+            </p>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
