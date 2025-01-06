@@ -1,0 +1,71 @@
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# User-specific files
+.git-credentials
+.gitconfig
+.vscode/
+.idea/
+.atom/
+.vscode/
+
+# Node.js / npm
+node_modules/
+npm-debug.log
+
+# Python
+*.pyc
+__pycache__/
+
+# Other common files
+.local/
+.cache/
+.config/
+.eclipse/
+
+# IDEs
+.idea/
+.project
+.classpath
+*.sublime-workspace
+*.sublime-project
+
+# Ignore specific folders and files from parent directories
+../../../.CFUserTextEncoding
+../../../.DS_Store
+../../../.IdentityService/
+../../../.ServiceHub/
+../../../.aspnet/
+../../../.atom/
+../../../.cache/
+../../../.cmake/
+../../../.config/
+../../../.dotnet/
+../../../.eclipse/
+../../../.git-credentials
+../../../.gitconfig
+../../../.gk/
+../../../.idlerc/
+../../../.lesshst
+../../../.local/
+../../../.m2/
+../../../.matplotlib/
+../../../.mono/
+../../../.nuget/
+../../../.oracle_jre_usage/
+../../../.p2/
+../../../.psql_history
+../../../.skiko/
+../../../.ssh/
+../../../.sync_settings/
+../../../.templateengine/
+../../../.viminfo
+../../../.vscode/
+../../../.yandex/
+../../../.zprofile
+../../../.zprofile.pysave
+../../../.zsh_history
+../../../.zsh_sessions/
+../../../.zshrc

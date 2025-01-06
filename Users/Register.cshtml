@@ -1,0 +1,43 @@
+@page
+@model WebApplication1.Pages.Users.RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Input.UserName"></label>
+        <input asp-for="Input.UserName" class="form-control" />
+        <span asp-validation-for="Input.UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Input.Email"></label>
+        <input asp-for="Input.Email" class="form-control" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Input.Birthday"></label>
+        <input asp-for="Input.Birthday" class="form-control" type="date" />
+        <span asp-validation-for="Input.Birthday" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Role">Role</label>
+        <select asp-for="Role" class="form-control">
+            <option value="user">User</option>
+            @* <option value="admin">Admin</option> *@
+        </select>
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
