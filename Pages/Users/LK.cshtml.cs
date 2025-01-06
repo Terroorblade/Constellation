@@ -34,7 +34,7 @@ namespace WebApplication1.Pages.Users
                 return NotFound();
             }
 
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.UserId == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.IdUser == id);
             if (user == null)
             {
                 return NotFound();
@@ -44,7 +44,7 @@ namespace WebApplication1.Pages.Users
                  Users = (User)user;
             }
 
-            if (user.UserId != id && !User.IsInRole("admin"))
+            if (user.IdUser != id && !User.IsInRole("admin"))
             {
                 return Forbid();
             }

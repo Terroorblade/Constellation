@@ -1,0 +1,47 @@
+@page
+@model WebApplication1.Pages.Users.DetailsModel
+
+@{
+    ViewData["Title"] = "ЛК";
+}
+
+<div class="profile-container">
+    <div class="profile-header">
+        <h1>Личный кабинет</h1>
+        <hr />
+    </div>
+
+    <div class="profile-info">
+        <dl>
+            <dt>Имя:</dt>
+            <dd>@Html.DisplayFor(model => model.Users.Username)</dd>
+        </dl>
+    </div>
+
+    <div class="profile-actions">
+        <h2>Действия</h2>
+        <hr />
+        @if (User.IsInRole("default_user") || User.IsInRole("admin"))
+        {
+            <a asp-page="./Edit" asp-route-id="@Model.Users.IdUser" style="background-color: #ffe6f0; border-color: #ffe6f0; color: #333; padding: 10px 15px; text-decoration: none; display: inline-block; border-radius: 4px; cursor: pointer;">Редактировать данные</a> <a>|</a>
+        }
+
+        <a asp-page="/Composition/Index" asp-route-performerId="@Model.Users.IdUser" style="background-color: #ffe6f0; border-color: #ffe6f0; color: #333; padding: 10px 15px; text-decoration: none; display: inline-block; border-radius: 4px; cursor: pointer;">Размещенные картины</a> <a>|</a>
+
+        <a asp-page="/Performer/Orders" asp-route-Id="@Model.Users.IdUser" style="background-color: #ffe6f0; border-color: #ffe6f0; color: #333; padding: 10px 15px; text-decoration: none; display: inline-block; border-radius: 4px; cursor: pointer;">Принятые заказы</a>
+
+        <p></p>
+
+        @if (User.IsInRole("default_user"))
+        {
+            <a asp-area="Identity" asp-page="/Account/Manage/Index" style="background-color: #ffe6f0; border-color: #ffe6f0; color: #333; padding: 10px 15px; text-decoration: none; display: inline-block; border-radius: 4px; cursor: pointer;">Изменить email или пароль</a>
+
+            <a>|</a>
+        }
+
+        @if (User.IsInRole("performer") || User.IsInRole("admin"))
+        {
+            <a asp-page="./Delete" asp-route-id="@Model.Users.IdUser" style="background-color: #ffe6f0; border-color: #ffe6f0; color: #333; padding: 10px 15px; text-decoration: none; display: inline-block; border-radius: 4px; cursor: pointer;">Удалить профиль</a>
+        }
+    </div>
+</div>

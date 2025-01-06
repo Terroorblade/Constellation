@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Models;
 
-public partial class ConsttestContext :IdentityDbContext
+public partial class ConsttestContext :IdentityDbContext<IdentityUser>
 {
     public ConsttestContext(DbContextOptions<ConsttestContext> options)
         : base(options)
@@ -165,13 +165,20 @@ public partial class ConsttestContext :IdentityDbContext
         });
 
 
-modelBuilder.Entity<User>(entity =>
+modelBuilder.Entity<User>(static entity =>
 {
-    entity.HasKey(e => e.UserId).HasName("users_pkey");
+    entity.HasKey(e => e.IdUser).HasName("users_pkey");
 
     entity.ToTable("users");
-    entity.Property(e => e.UserId).HasColumnName("user_id");
+    entity.Property(e => e.IdUser).HasColumnName("user_id");
     entity.Property(e => e.Username).HasColumnName("name");
+ entity.Property(e => e.IdentityUserId).HasColumnName("IdentityUserId");
+
+    // Устанавливаем связь между User и IdentityUser
+    entity.HasOne(u => u.IdentityUser)
+          .WithOne()
+          .HasForeignKey<User>(u => u.IdentityUserId)
+          .OnDelete(DeleteBehavior.Cascade);
 
 });
 

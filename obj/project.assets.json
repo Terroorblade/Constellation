@@ -8198,11 +8198,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/terroor/Downloads/WebApplication1/WebApplication1/WebApplication1.csproj",
+      "projectUniqueName": "/Users/terroor/Desktop/Const/WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "/Users/terroor/Downloads/WebApplication1/WebApplication1/WebApplication1.csproj",
+      "projectPath": "/Users/terroor/Desktop/Const/WebApplication1.csproj",
       "packagesPath": "/Users/terroor/.nuget/packages/",
-      "outputPath": "/Users/terroor/Downloads/WebApplication1/WebApplication1/obj/",
+      "outputPath": "/Users/terroor/Desktop/Const/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/terroor/.nuget/NuGet/NuGet.Config"

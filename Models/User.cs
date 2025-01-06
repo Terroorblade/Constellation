@@ -6,7 +6,7 @@ namespace WebApplication1.Models;
 
 public partial class User 
 {
-    public int UserId { get; set; }
+    public int IdUser { get; set; }
     public string? IdentityUserId { get; set; }
 
     public string Username { get; set; } = null!;
@@ -20,5 +20,5 @@ public partial class User
     public virtual ICollection<DailySchedule> DailySchedules { get; set; } = new List<DailySchedule>();
 
     public virtual ICollection<UserSphereSatisfaction> UserSphereSatisfactions { get; set; } = new List<UserSphereSatisfaction>();
-    // public AspNetUser? IdentityUser { get; set; } // Навигационное свойство
+    public virtual IdentityUser IdentityUser { get; set; } // Навигационное свойство
 }

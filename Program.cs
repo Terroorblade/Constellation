@@ -22,36 +22,31 @@ using WebApplication1;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ConsttestContext>(options =>
+    options.UseNpgsql(connectionString)); 
+
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<ConsttestContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConstellationConnection")));
+// builder.Services.AddDbContext<WebApplication1.Models.ConsttestContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ConstellationConnection")));
 
-// IDENTITY
-// builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
-//     .AddEntityFrameworkStores<ConsttestContext>()
-//     .AddRoles<IdentityRole>();
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedEmail = false; // Отключить необходимость подтверждения email
 })
- .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ConsttestContext>();
+    .AddEntityFrameworkStores<ConsttestContext>()
+    .AddDefaultTokenProviders();
 
+// builder.Services.AddIdentityCore<IdentityUser>(options => options.SignIn.RequireConfirmedEmail = false)
+//     .AddRoles<IdentityRole>() 
+//     .AddSignInManager()
+//     .AddDefaultTokenProviders()
+//     .AddEntityFrameworkStores<DbContext>();
 
 // ссылка details
 builder.Services.AddScoped<UseresService>();
 
 builder.Services.AddRazorPages();
-
-// Add services to the container.
-// var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-// builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//     options.UseSqlServer(connectionString));
-// builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-// builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//     .AddEntityFrameworkStores<ApplicationDbContext>();
-// builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -81,7 +76,6 @@ app.MapControllerRoute
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
-
 app.MapRazorPages();
 
 // Регистрируем роли и пользователя
@@ -89,7 +83,7 @@ using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-    var roles = new[] { "admin", "customer", "performer" };
+    var roles = new[] { "admin", "user" };
 
     foreach (var role in roles)
     {
@@ -126,5 +120,6 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine("Admin user already exists.");
     }
 }
+
 
 app.Run();
