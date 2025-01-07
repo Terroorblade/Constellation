@@ -181,8 +181,6 @@ modelBuilder.Entity<User>(static entity =>
           .OnDelete(DeleteBehavior.Cascade);
 
 });
-
-
         modelBuilder.Entity<UserSphereSatisfaction>(entity =>
         {
             entity.HasKey(e => e.SatisfactionId).HasName("user_sphere_satisfaction_pkey");

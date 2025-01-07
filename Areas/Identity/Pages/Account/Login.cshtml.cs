@@ -119,7 +119,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 {
                     await _signInManager.SignInAsync(user, Input.RememberMe);
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);  // Redirect to the returnUrl after successful login
+                      return RedirectToPage("/Users/LK", new { id = user.Id });
                 }
             }
 

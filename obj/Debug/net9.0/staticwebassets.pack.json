@@ -245,6 +245,10 @@
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
     },
     {
+      "Id": "/Users/terroor/Desktop/Const/wwwroot/фон.jpg",
+      "PackagePath": "staticwebassets/фон.jpg"
+    },
+    {
       "Id": "obj/Debug/net9.0/staticwebassets/msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
