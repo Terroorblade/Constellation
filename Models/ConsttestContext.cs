@@ -180,6 +180,11 @@ modelBuilder.Entity<User>(static entity =>
           .HasForeignKey<User>(u => u.IdentityUserId)
           .OnDelete(DeleteBehavior.Cascade);
 
+    entity.HasMany(u => u.DailySchedules)
+          .WithOne(d => d.UserScheduleNavigation)
+          .HasForeignKey(d => d.UserSchedule)
+          .OnDelete(DeleteBehavior.Cascade);
+
 });
         modelBuilder.Entity<UserSphereSatisfaction>(entity =>
         {

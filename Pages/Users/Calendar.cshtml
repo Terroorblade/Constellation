@@ -1,0 +1,265 @@
+@page
+@model WebApplication1.Pages.Users.Pages_Users_Calendar
+@{
+    ViewData["Title"] = "Календарь";
+}
+<style>
+    .event-widget {
+        background-color: #87a659 !important;
+        color: #fff !important;
+    }
+    .habit-widget {
+        background-color: #984abf !important;
+        color: #fff !important;
+    }
+    .priority-low {
+        border: 2px solid rgb(4, 200, 4);
+        background-color: rgba(0, 128, 0, 0.1);
+    }
+    .priority-medium {
+        border: 2px solid rgb(252, 252, 47);
+        background-color: rgba(255, 255, 0, 0.1);
+    }
+    .priority-high {
+        border: 2px solid rgb(213, 14, 14);
+        background-color: rgba(255, 0, 0, 0.1);
+    }
+</style>
+
+<div class="container mt-4">
+<a asp-page="/Users/Details" class="btn btn-secondary">Назад в личный кабинет</a>
+    <div id="calendar" style="max-width: 90%; margin: 0 auto;"></div>
+</div>
+
+<!-- Модальное окно для отображения задач на день -->
+<div class="modal fade" id="tasksForDayModal" tabindex="-1" aria-labelledby="tasksForDayModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tasksForDayModalLabel">Задачи на день</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <ul id="eventList" class="list-group">
+                    <!-- Данные будут динамически добавляться сюда -->
+                </ul>
+                <button class="btn btn-primary mt-3" id="openAddEventModalButton">Добавить событие</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно для добавления события -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Добавить событие</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="mb-3">
+                        <label for="eventTitle" class="form-label">Название события</label>
+                        <input type="text" class="form-control" id="eventTitle" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDescription" class="form-label">Описание</label>
+                        <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDate" class="form-label">Дата</label>
+                        <input type="text" class="form-control" id="eventDate" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventPriority" class="form-label">Приоритет</label>
+                        <select class="form-select" id="eventPriority">
+                            <option value="low">Низкий</option>
+                            <option value="medium">Средний</option>
+                            <option value="high">Высокий</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" id="saveEventButton">Сохранить</button>
+                 @* <button type="button" class="btn btn-danger" id="deleteEventButton">Удалить</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        $(function () {
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                editable: false,
+                events: '/Calendar/GetEvents', // URL для получения данных
+                eventRender: function (event, element) {
+                    if (event.type === "event") {
+                        element.addClass('event-widget');
+                    } else if (event.type === "habit") {
+                        element.addClass('habit-widget');
+                    }
+                    // Установим приоритет
+                   if (event.priority === 'low') {
+                    element.addClass('priority-low');
+                    @* element.find('.fc-title').append('<div>Приоритет: Низкий</div>'); *@
+                } else if (event.priority === 'medium') {
+                    element.addClass('priority-medium');
+                    @* element.find('.fc-title').append('<div>Приоритет: Средний</div>'); *@
+                } else if (event.priority === 'high') {
+                    element.addClass('priority-high');
+                    @* element.find('.fc-title').append('<div>Приоритет: Высокий</div>'); *@
+                }
+                },
+                dayClick: function (date) {
+                    const selectedDate = date.format('YYYY-MM-DD');
+                    $('#tasksForDayModal').data('selectedDate', selectedDate);
+                    $('#eventList').empty(); // Очистка списка задач
+                    $('#eventDate').val(selectedDate); // Устанавливаем выбранную дату в форму
+
+                    $.get('/Calendar/GetEvents', function (data) {
+                        const eventsForDay = data.filter(e => e.start === selectedDate);
+                        eventsForDay.forEach(e => {
+                            const isChecked = e.status ? "checked" : "";
+                            $('#eventList').append(`
+                                <li class="list-group-item ${e.priority === 'low' ? 'priority-low' : e.priority === 'medium' ? 'priority-medium' : 'priority-high'}">
+                                    <strong>${e.type === 'event' ? 'Задача' : 'Привычка'}:</strong> ${e.title}<br>
+                                    <strong>Описание:</strong> ${e.description || 'Нет описания'}<br>
+                                   <strong>Приоритет:</strong> ${e.priority === 'low' ? 'Низкий' : e.priority === 'medium' ? 'Средний' : 'Высокий'}<br>
+                                    <input type="checkbox" class="status-checkbox" data-event-id="${e.id}" ${isChecked}>
+                                    <label>Выполнено</label>
+                                    <br>
+ <button class="btn btn-danger btn-sm delete-event-button" data-event-id="${e.id}" style="position: absolute; bottom: 10px; right: 10px;">Удалить</button>
+                                </li>
+                            `);
+                        });
+                        $('#tasksForDayModal').modal('show');
+                    });
+                }
+            });
+            // Обработчик для удаления события
+$(document).on('click', '.delete-event-button', function () {
+    const eventId = $(this).data('event-id');
+    const eventElement = $(this).closest('li'); //  родительский элемент события
+
+    if (confirm('Вы уверены, что хотите удалить это событие?')) {
+        $.ajax({
+            url: '/Calendar/DeleteEvent',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(eventId),
+            success: function () {
+                alert('Событие удалено успешно!');
+                eventElement.remove(); // Удаляем событие из списка на странице
+            },
+            error: function () {
+                alert('Произошла ошибка при удалении события.');
+            }
+        });
+    }
+});
+            // Открытие модального окна для добавления события
+            $('#openAddEventModalButton').click(function () {
+                const selectedDate = $('#tasksForDayModal').data('selectedDate');
+                if (!selectedDate) {
+                    alert('Не выбрана дата для добавления события');
+                    return;
+                }
+
+                // Открываем модальное окно для добавления события
+                $('#eventModal').data('selectedDate', selectedDate);
+                $('#eventTitle').val('');
+                $('#eventDescription').val('');
+                $('#eventDate').val(selectedDate);
+                $('#eventPriority').val('low'); // Устанавливаем значение по умолчанию
+                $('#eventModal').modal('show');
+            });
+
+            // Сохранение события
+            $('#saveEventButton').click(function () {
+                const title = $('#eventTitle').val();
+                const description = $('#eventDescription').val();
+                const date = $('#eventModal').data('selectedDate');
+                const priority = $('#eventPriority').val();
+
+                if (!title) {
+                    alert('Название события обязательно.');
+                    return;
+                }
+
+                const eventData = {
+                    Name: title,
+                    Description: description,
+                    EventDate: date,
+                    Priority: priority
+                };
+
+                $.ajax({
+                    url: '/Calendar/AddEvent',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(eventData),
+                    success: function () {
+                        alert('Событие добавлено успешно!');
+                        $('#eventModal').modal('hide');
+                        $('#tasksForDayModal').modal('hide');
+                        $('#calendar').fullCalendar('refetchEvents'); // Обновляем календарь
+                    },
+                    error: function () {
+                        alert('Произошла ошибка при добавлении события.');
+                    }
+                });
+
+            });
+@* // Удаление события
+            $('#deleteEventButton').click(function () {
+                const eventId = $('#eventModal').data('event-id');
+
+                if (!eventId) {
+                    alert('Событие не выбрано для удаления.');
+                    return;
+                }
+
+                if (confirm('Вы уверены, что хотите удалить это событие?')) {
+                    $.ajax({
+                        url: '/Calendar/DeleteEvent',
+                        type: 'POST',
+                        data: { eventId: eventId },
+                        success: function () {
+                            alert('Событие удалено успешно!');
+                            $('#eventModal').modal('hide');
+                            $('#calendar').fullCalendar('refetchEvents');
+                        },
+                        error: function () {
+                            alert('Произошла ошибка при удалении события.');
+                        }
+                    });
+                }
+            }); *@
+
+            // Обновление статуса задачи
+            $(document).on('change', '.status-checkbox', function () {
+                const eventId = $(this).data('event-id');
+                const status = $(this).is(':checked');
+
+                $.post('/Calendar/UpdateEventStatus', { eventId, status })
+                    .done(() => alert('Статус обновлен!'))
+                    .fail(() => alert('Ошибка обновления статуса.'));
+            });
+        });
+    </script>
+}

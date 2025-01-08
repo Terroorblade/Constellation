@@ -30,10 +30,17 @@ namespace WebApplication1.Pages.Users
 
         public async Task<IActionResult> OnGetAsync(string? id)
         {
+            var userId = _userManager.GetUserId(User);
+    if (string.IsNullOrEmpty(id))
+    {
+        id = userId;
+    }
+
             if (id == null)
             {
                 _logger.LogWarning("Id пользователя не передан.");
-                return NotFound();
+                // return NotFound(); 
+                return RedirectToPage("/Identity/Account/Login");
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(m => m.IdentityUserId == id);
@@ -47,7 +54,7 @@ namespace WebApplication1.Pages.Users
                  Users = user;
                  _logger.LogInformation($"Информация о пользователе с Id {id} загружена.");
             }
-           var userId = _userManager.GetUserId(User);
+        //    var userId = _userManager.GetUserId(User);
         
             if (user.IdentityUserId != id && !User.IsInRole("admin"))
             {

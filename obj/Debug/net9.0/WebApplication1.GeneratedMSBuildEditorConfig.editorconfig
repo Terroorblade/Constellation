@@ -180,10 +180,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/terroor/Desktop/Const/Pages/DailySchedule/Calendar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGFpbHlTY2hlZHVsZS9DYWxlbmRhci5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/terroor/Desktop/Const/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -204,12 +200,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/terroor/Desktop/Const/Pages/Users/LK.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvTEsuY3NodG1s
+[/Users/terroor/Desktop/Const/Pages/Users/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvQ2FsZW5kYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/terroor/Desktop/Const/Pages/Users/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/terroor/Desktop/Const/Pages/Users/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/terroor/Desktop/Const/Pages/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0xvZ2luUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/terroor/Desktop/Const/Pages/_ViewImports.cshtml]

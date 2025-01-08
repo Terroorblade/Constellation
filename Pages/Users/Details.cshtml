@@ -22,8 +22,10 @@
     <div class="profile-actions mt-5">
         <h2>Действия</h2>
         <hr />
-        <div class="col-md-12">  <!-- Убрал лишний row -->
-            <a asp-page="/Users/Calendar" asp-route-performerId="@Model.Users.IdUser" class="btn btn-lg btn-block mb-2" style="background-color: #d9edf7; color: #31708f; padding: 20px; font-size: 1.25rem;">Перейти к календарю</a>
+        <div class="col-md-12">  
+          <a asp-page="/Users/Calendar" asp-route-id="@Model.Users.IdUser" class="btn btn-lg btn-block mb-2" style="background-color: #d9edf7; color: #31708f; padding: 20px; font-size: 1.25rem;">
+    Перейти к календарю
+</a>
             <dt></dt>
             @if (User.IsInRole("user") || User.IsInRole("admin"))
             {
