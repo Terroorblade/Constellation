@@ -1,0 +1,189 @@
+@page
+@using WebApplication1.Pages.Users
+@model TestingModel
+@{
+    ViewData["Title"] = "Тест на анализ сфер жизни";
+}
+
+<style>
+    h2 {
+        color: #000000;
+        text-align: center;
+        @* font-size: 2rem;
+        font-family: Georgia, serif; *@
+        margin-bottom: 30px;
+    }
+    .question-label {
+        color: #000000;
+        font-size: 1.2em;
+        @* font-family: Georgia, serif; *@
+        margin-bottom: 15px;
+    }
+    .question-container {
+        display: none;
+        margin-bottom: 30px;
+    }
+    .form-control-range {
+        width: 100%;
+    }
+    .range-labels {
+        display: flex;
+        justify-content: space-between;
+        color: rgb(0, 0, 0);
+        font-size: 1rem;
+    }
+    .range-value {
+        color: rgb(0, 0, 0);
+        font-size: 56px;
+        text-align: center;
+        margin-top: 5px;
+    }
+    .question-container.active {
+        display: block;
+    }
+    .save {
+        margin-left: 35px;
+        color: #fff;
+        background-color: rgb(65, 172, 46);
+        border-color: rgb(45, 113, 32);
+        margin: 0 auto;
+        display: block;
+    }
+    .back {
+        color: #ffffff !important;
+        background-color: rgb(118, 139, 176);
+    }
+</style>
+
+
+<div class="container mt-5">
+    <h2>Тест на анализ сфер жизни</h2>
+
+    @if (Model.TestModel != null && Model.TestModel?.Questions != null && Model.TestModel.Questions.Any())
+    {
+        <form method="post" id="testForm">
+            @Html.AntiForgeryToken()
+            @for (int i = 0; i < Model.TestModel.Questions.Count; i++)
+            {
+                var question = Model.TestModel.Questions[i];
+                <div class="form-group question-container @((i == 0) ? "active" : "")" id="question-@i">
+                    <label for="question-@i" class="question-label">
+                        @question.SphereName: "@question.QuestionText" (Оцените от 0 до 10)
+                    </label>
+                    <input type="range" id="range-@i" class="form-control-range"
+                        min="0" max="10" step="1" value="0"
+                        data-sphere-name="@question.SphereName" 
+                        data-question-index="@i" 
+                        onchange="updateRangeValue(this, @i)" />
+
+                    <div class="range-labels">
+                        @for (var j = 0; j <= 10; j++)
+                        {
+                            <span>@j</span>
+                        }
+                    </div>
+                    <div class="range-value" id="rangeValue-@i">0</div>
+                    <div class="question-navigation-buttons">
+                        @if (i > 0)
+                        {
+                            <button type="button" class="btn btn-secondary mt-2" onclick="showPreviousQuestion(@i)">Предыдущий вопрос</button>
+                        }
+
+                        @if (i < Model.TestModel.Questions.Count - 1)
+                        {
+                            <button type="button" class="btn btn-primary mt-2" onclick="showNextQuestion(@i)">Следующий вопрос</button>
+                        }
+                    </div>
+                </div>
+            }
+            <button type="submit" class="btn save mt-2">Сохранить результаты</button>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning">Нет вопросов для отображения.</div>
+    }
+
+<a asp-page="/Users/Details" class="btn back">Назад в личный кабинет</a>
+</div>
+
+<script>
+    var testResults = {};
+    var identityUserId = '@Model.TestModel.IdentityUserId';
+
+    function showNextQuestion(currentIndex) {
+        var currentQuestion = document.getElementById("question-" + currentIndex);
+        var nextQuestion = document.getElementById("question-" + (currentIndex + 1));
+
+        if (currentQuestion) currentQuestion.classList.remove("active");
+        if (nextQuestion) nextQuestion.classList.add("active");
+    }
+
+    function showPreviousQuestion(currentIndex) {
+        var currentQuestion = document.getElementById("question-" + currentIndex);
+        var previousQuestion = document.getElementById("question-" + (currentIndex - 1));
+
+        if (currentQuestion) currentQuestion.classList.remove("active");
+        if (previousQuestion) previousQuestion.classList.add("active");
+    }
+
+    function updateRangeValue(slider, questionIndex) {
+        var value = slider.value;
+        var rangeValueDisplay = document.getElementById("rangeValue-" + questionIndex);
+        if (rangeValueDisplay) {
+            rangeValueDisplay.textContent = value;
+        }
+
+        var sphereName = slider.dataset.sphereName;
+        var questionIndex = slider.dataset.questionIndex;
+
+        if (!testResults[sphereName]) {
+            testResults[sphereName] = [];
+        }
+        testResults[sphereName][questionIndex] = value;
+    }
+
+     function submitResults(event) {
+        event.preventDefault();
+
+        var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+        fetch('/UserSphereSaticfaction/Testing?handler=SaveTestResults', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': token
+            },
+            body: JSON.stringify({
+            IdentityUserId: identityUserId,  // Optionally pass IdentityUserId if needed
+                Questions: Object.entries(testResults).flatMap(([sphereName, values]) =>
+                    Object.entries(values).map(([index, level]) => ({
+                        SphereName: sphereName,
+                        SatisfactionLevel: level
+                    }))
+                )
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Результаты успешно сохранены!");
+                window.location.href = '/TestResults?userId=' + userId;
+            } else {
+                return response.text().then(text => {
+                    console.error("Ошибка при сохранении:", text);
+                    alert("Произошла ошибка при сохранении результатов.");
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Ошибка при сохранении:", error);
+            alert("Произошла ошибка при сохранении результатов.");
+        });
+    }
+
+   document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("testForm").addEventListener("submit", submitResults);
+});
+
+
+</script>

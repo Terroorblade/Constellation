@@ -87,7 +87,7 @@ public partial class ConsttestContext :IdentityDbContext<IdentityUser>
             entity.ToTable("goal");
 
             entity.Property(e => e.GoalId).HasColumnName("goal_id");
-            entity.Property(e => e.CreateDate).HasColumnName("create_date");
+            // entity.Property(e => e.CreateDate).HasColumnName("create_date");
             entity.Property(e => e.Deadline).HasColumnName("deadline");
             entity.Property(e => e.Description)
                 .HasMaxLength(100)
@@ -102,6 +102,11 @@ public partial class ConsttestContext :IdentityDbContext<IdentityUser>
                 .HasForeignKey(d => d.GoalSphere)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("goal_goal_sphere_fkey");
+
+             entity.HasOne(g => g.User)
+                .WithMany(u => u.Goals) // Предполагаем, что в User есть коллекция Goals
+                .HasForeignKey(g => g.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Habit>(entity =>
@@ -183,6 +188,11 @@ modelBuilder.Entity<User>(static entity =>
     entity.HasMany(u => u.DailySchedules)
           .WithOne(d => d.UserScheduleNavigation)
           .HasForeignKey(d => d.UserSchedule)
+          .OnDelete(DeleteBehavior.Cascade);
+
+    entity.HasMany(u => u.Goals)
+          .WithOne(g => g.User)
+          .HasForeignKey(g => g.UserId)
           .OnDelete(DeleteBehavior.Cascade);
 
 });

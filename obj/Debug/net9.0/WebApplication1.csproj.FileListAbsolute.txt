@@ -770,8 +770,6 @@
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/84er2wu9dc-dd6z7egasc.gz
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/wjzdzii2te-5pze98is44.gz
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/cqxxp6mh6s-mlv21k5csn.gz
-/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-klimuduuo1.gz
-/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-klimuduuo1.gz
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/staticwebassets.build.json
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/staticwebassets.development.json
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/staticwebassets.build.endpoints.json
@@ -787,4 +785,11 @@
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/WebApplication1.pdb
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/WebApplication1.genruntimeconfig.cache
 /Users/terroor/Desktop/Const/obj/Debug/net9.0/ref/WebApplication1.dll
-/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-o3bir1bzvo.gz
+/Users/terroor/Desktop/Const/bin/Debug/net9.0/Pages/Properties/launchSettings.json
+/Users/terroor/Desktop/Const/bin/Debug/net9.0/Pages/Properties/serviceDependencies.json
+/Users/terroor/Desktop/Const/bin/Debug/net9.0/Pages/Properties/serviceDependencies.local.json
+/Users/terroor/Desktop/Const/bin/Debug/net9.0/Microsoft.Win32.SystemEvents.dll
+/Users/terroor/Desktop/Const/bin/Debug/net9.0/runtimes/win/lib/net9.0/Microsoft.Win32.SystemEvents.dll
+/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-sz948hxndm.gz
+/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-602w4uddge.gz
+/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-602w4uddge.gz

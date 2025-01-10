@@ -1,0 +1,37 @@
+@page
+@using WebApplication1.Models
+@model WebApplication1.Pages.Users.TestResultsModel
+@{
+    ViewData["Title"] = "Результаты теста";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Результаты теста</h2>
+
+    @if (Model.SphereResults != null && Model.SphereResults.Any())
+    {
+        <table class="table table-bordered table-hover mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Сфера жизни</th>
+                    <th>Уровень удовлетворенности</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var result in Model.SphereResults)
+                {
+                    <tr>
+                        <td>@result.SphereName</td>
+                        <td>@result.SatisfactionLevel</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning">Результаты теста отсутствуют.</div>
+    }
+
+  <a asp-page="/Users/Details" class="btn btn-secondary">Назад в личный кабинет</a>
+</div>

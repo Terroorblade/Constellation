@@ -299,11 +299,7 @@ namespace WebApplication1.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GoalId"));
 
-                    b.Property<DateOnly>("CreateDate")
-                        .HasColumnType("date")
-                        .HasColumnName("create_date");
-
-                    b.Property<DateOnly>("Deadline")
+                    b.Property<DateOnly?>("Deadline")
                         .HasColumnType("date")
                         .HasColumnName("deadline");
 
@@ -326,10 +322,15 @@ namespace WebApplication1.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("status");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("GoalId")
                         .HasName("goal_pkey");
 
                     b.HasIndex("GoalSphere");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("goal", (string)null);
                 });
@@ -477,8 +478,8 @@ namespace WebApplication1.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("SatisfactionId"));
 
-                    b.Property<short?>("SatisfactionLevel")
-                        .HasColumnType("smallint")
+                    b.Property<double?>("SatisfactionLevel")
+                        .HasColumnType("double precision")
                         .HasColumnName("satisfaction_level");
 
                     b.Property<int?>("SphereIds")
@@ -580,7 +581,15 @@ namespace WebApplication1.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("goal_goal_sphere_fkey");
 
+                    b.HasOne("WebApplication1.Models.User", "User")
+                        .WithMany("Goals")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("GoalSphereNavigation");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Habit", b =>
@@ -669,6 +678,8 @@ namespace WebApplication1.Migrations
             modelBuilder.Entity("WebApplication1.Models.User", b =>
                 {
                     b.Navigation("DailySchedules");
+
+                    b.Navigation("Goals");
 
                     b.Navigation("UserSphereSatisfactions");
                 });

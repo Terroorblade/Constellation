@@ -5,6 +5,104 @@
     ViewData["Title"] = "ЛК";
 }
 
+<style>
+/* Общие стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стили для шапки */
+.header {
+    display: flex;
+    justify-content: space-between; /* Распределение кнопок по краям */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    position: relative;
+}
+
+/* Стили для кнопок */
+.calendar-btn, .goals-btn, .test-btn, .results-btn {
+    padding: 15px 30px; /* Увеличиваем размер кнопок */
+    font-size: 18px; /* Увеличиваем размер текста */
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-btn {
+    background-color: #e557bd; /* Цвет кнопки Календарь */
+    padding: 20px 35px; /* Увеличиваем размер */
+    font-size: 22px; /* Увеличиваем шрифт */
+        flex-direction: column; 
+}
+
+.goals-btn {
+    background-color: #d767a7;
+   padding:20px 35px; /* Увеличиваем размер */
+    font-size: 22px; /* Увеличиваем шрифт */
+    margin: 0 20px; /* Отступы для центровки */
+        flex-direction: column; 
+}
+
+.test-btn {
+    background-color: #5f6aeb; /* Цвет кнопки Пройти тест */
+    margin-right: 15px; /* Добавляем отступ для разделения кнопок */
+}
+
+.results-btn {
+    background-color: #715bcc; /* Цвет кнопки Результаты */
+}
+
+/* Наведение на кнопки */
+.calendar-btn:hover {
+    background-color: #7c3fed;
+}
+
+.goals-btn:hover {
+    background-color: #f52eee;
+}
+
+.test-btn:hover {
+    background-color: #459cd5;
+}
+
+.results-btn:hover {
+    background-color: #896cf9;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center; /* Центрируем кнопки */
+    align-items: center;
+    gap: 80px; /* Отступы между блоками текста и кнопками */
+    margin-top: 20px;
+    text-align: center;
+}
+/* Блок с кнопками теста и результатами */
+.test-buttons {
+    display: flex;
+    justify-content: flex-end; /* Кнопки теста и результата справа */
+    flex-direction: column; 
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 10px;
+}
+.button-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Цвет текста */
+    display: block; /* Блочный элемент для выравнивания текста */
+    margin-bottom: 10px; /* Отступ снизу для подписи */
+}
+
+</style>
+
 <div class="profile-container text-center">
     <div class="profile-header">
         <h1>Личный кабинет</h1>
@@ -15,32 +113,90 @@
         <div class="row">
             <div class="col-md-12">
                 <h5 class="mb-3">Пользователь: @Html.DisplayFor(model => model.Users.Username)</h5>
+                <!-- Кнопка для вызова модального окна -->
+                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#accountSettingsModal">
+                    Настройки аккаунта
+                </button>
             </div>
         </div>
     </div>
 
-    <div class="profile-actions mt-5">
-        <h2>Действия</h2>
-        <hr />
-        <div class="col-md-12">  
-          <a asp-page="/Users/Calendar" asp-route-id="@Model.Users.IdUser" class="btn btn-lg btn-block mb-2" style="background-color: #d9edf7; color: #31708f; padding: 20px; font-size: 1.25rem;">
-    Перейти к календарю
-</a>
-            <dt></dt>
-            @if (User.IsInRole("user") || User.IsInRole("admin"))
-            {
-                <a asp-page="./Edit" asp-route-id="@Model.Users.IdUser" class="btn btn-lg btn-outline-secondary btn-block mb-2">Редактировать данные</a>
-            }
-            <dt></dt>
-            @if (User.IsInRole("user"))
-            {
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-lg btn-outline-secondary btn-block mb-2">Изменить email или пароль</a>
-            }
-            <dt></dt>
-            @if (User.IsInRole("user") || User.IsInRole("admin"))
-            {
-                <a asp-page="./Delete" asp-route-id="@Model.Users.IdUser" class="btn btn-lg btn-outline-danger btn-block mb-2">Удалить профиль</a>
-            }
+    <!-- Модальное окно "Настройки аккаунта" -->
+    <div class="modal fade" id="accountSettingsModal" tabindex="-1" aria-labelledby="accountSettingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accountSettingsModalLabel">Настройки аккаунта</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    @if (User.IsInRole("user"))
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" 
+                           class="btn btn-outline-secondary w-100 mb-2">Изменить email/пароль</a>
+                    }
+                    @if (User.IsInRole("user") || User.IsInRole("admin"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@Model.Users.IdUser" 
+                           class="btn btn-outline-secondary w-100 mb-2">Редактировать данные</a>
+                        <a asp-page="./Delete" asp-route-id="@Model.Users.IdUser" 
+                           class="btn btn-outline-danger w-100">Удалить профиль</a>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="profile-actions mt-5 text-center">
+    <h2>Действия</h2>
+    <hr />
+
+
+<div class="button-container">
+    <span style="margin-right: 70px;"></span> 
+    <span class="button-label">Календарь</span>
+   <span style="margin-right: 15px;"></span> 
+    <span style="margin-left: 30px;"></span> 
+    <span class="button-label">Цели</span>
+    <span style="margin-right: 50px;"></span> 
+    <span class="button-label">Тест на анализ сфер жизни</span>
+    <span style="margin-right: 25px;"></span> 
+</div>
+
+@* <span class="button-label">Календарь</span>
+<span class="button-label">Цели</span> 
+<span class="button-label">Тест на анализ сфер жизни</span> *@
+
+    <div class="button-container">
+         
+       
+        <!-- Кнопка "Календарь" слева -->
+        <a asp-page="/Users/Calendar" asp-route-id="@Model.Users.IdUser" class="calendar-btn">
+            Перейти к календарю
+        </a>
+
+        <!-- Кнопка "Мои цели" по центру -->
+         
+         
+        <a asp-page="/Users/Goal" asp-route-id="@Model.Users.IdUser" class="goals-btn">
+            Мои цели
+        </a>
+
+        <!-- Блок с кнопками теста и результатов справа -->
+        <div class="test-buttons">
+        
+           
+            <a asp-page="/UserSphereSatisfaction/Test" class="test-btn">
+                Пройти тест
+            </a>
+            
+            <!-- Кнопка для просмотра результатов теста -->
+            <a asp-page="/UserSphereSatisfaction/TestResults" asp-route-userId="@Model.Users.IdUser" class="results-btn">
+                Просмотреть результаты теста
+            </a>
         </div>
     </div>
 </div>

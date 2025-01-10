@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZndQuGoSLXNR1bTJBbXQURoVC15bCCVhVqu1a8myBB0=",
+  "Hash": "LKLBDNdqR5inPppr8sjM7/leZnCXj5gDCCb54IdeolQ=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -1676,12 +1676,12 @@
       "OriginalItemSpec": "/Users/terroor/.nuget/packages/microsoft.aspnetcore.identity.ui/9.0.0/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap.css.map"
     },
     {
-      "Identity": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-klimuduuo1.gz",
+      "Identity": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-602w4uddge.gz",
       "SourceId": "WebApplication1",
       "SourceType": "Computed",
       "ContentRoot": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "WebApplication1#[.{fingerprint=klimuduuo1}]!.bundle.scp.css.gz",
+      "RelativePath": "WebApplication1#[.{fingerprint=602w4uddge}]!.bundle.scp.css.gz",
       "AssetKind": "All",
       "AssetMode": "Reference",
       "AssetRole": "Alternative",
@@ -1690,8 +1690,8 @@
       "RelatedAsset": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "87g02ksxa4",
-      "Integrity": "/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=",
+      "Fingerprint": "mw0dzffudz",
+      "Integrity": "1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css"
@@ -2789,12 +2789,12 @@
       "OriginalItemSpec": "/Users/terroor/.nuget/packages/microsoft.aspnetcore.identity.ui/9.0.0/staticwebassets/V5/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
     },
     {
-      "Identity": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-klimuduuo1.gz",
+      "Identity": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-602w4uddge.gz",
       "SourceId": "WebApplication1",
       "SourceType": "Computed",
       "ContentRoot": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "WebApplication1#[.{fingerprint=klimuduuo1}]?.styles.css.gz",
+      "RelativePath": "WebApplication1#[.{fingerprint=602w4uddge}]?.styles.css.gz",
       "AssetKind": "All",
       "AssetMode": "CurrentProject",
       "AssetRole": "Alternative",
@@ -2803,8 +2803,8 @@
       "RelatedAsset": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/bundle/WebApplication1.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "87g02ksxa4",
-      "Integrity": "/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=",
+      "Fingerprint": "mw0dzffudz",
+      "Integrity": "1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/bundle/WebApplication1.styles.css"
@@ -3314,12 +3314,12 @@
       "OriginalItemSpec": "/Users/terroor/.nuget/packages/microsoft.aspnetcore.identity.ui/9.0.0/staticwebassets/V5/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-o3bir1bzvo.gz",
+      "Identity": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-sz948hxndm.gz",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "css/site#[.{fingerprint=o3bir1bzvo}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=sz948hxndm}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -3328,8 +3328,8 @@
       "RelatedAsset": "/Users/terroor/Desktop/Const/wwwroot/css/site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "fkcee4a81k",
-      "Integrity": "HzX1jXJtJmVxmuC41bgPS8NiQKl098Mfh7Dy7gZMsiE=",
+      "Fingerprint": "tsvhj9elbh",
+      "Integrity": "PZKQ/uh85bN2Rn99/6gnWGf9dhMdBTLhvOq+9yZFkWA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/terroor/Desktop/Const/wwwroot/css/site.css"
@@ -3937,8 +3937,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "klimuduuo1",
-      "Integrity": "WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=",
+      "Fingerprint": "602w4uddge",
+      "Integrity": "2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/bundle/WebApplication1.styles.css"
@@ -3958,19 +3958,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "klimuduuo1",
-      "Integrity": "WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=",
+      "Fingerprint": "602w4uddge",
+      "Integrity": "2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css"
     },
     {
-      "Identity": "/Users/terroor/Desktop/Const/wwwroot/фон.jpg",
+      "Identity": "/Users/terroor/Desktop/Const/wwwroot/css/фон.jpg",
       "SourceId": "WebApplication1",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/terroor/Desktop/Const/wwwroot/",
       "BasePath": "_content/WebApplication1",
-      "RelativePath": "фон#[.{fingerprint}]?.jpg",
+      "RelativePath": "css/фон#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -3983,7 +3983,7 @@
       "Integrity": "kp0wz69Abb3hk10wjt7Az4aEXt/d93zVPCI6/LB4j+0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/фон.jpg"
+      "OriginalItemSpec": "wwwroot/css/фон.jpg"
     },
     {
       "Identity": "/Users/terroor/Desktop/Const/wwwroot/css/site.css",
@@ -4000,8 +4000,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "o3bir1bzvo",
-      "Integrity": "tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI=",
+      "Fingerprint": "sz948hxndm",
+      "Integrity": "aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
@@ -5248,8 +5248,8 @@
   ],
   "Endpoints": [
     {
-      "Route": "фон.a9igmnxc3r.jpg",
-      "AssetFile": "/Users/terroor/Desktop/Const/wwwroot/фон.jpg",
+      "Route": "css/фон.a9igmnxc3r.jpg",
+      "AssetFile": "/Users/terroor/Desktop/Const/wwwroot/css/фон.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5284,7 +5284,7 @@
         },
         {
           "Name": "label",
-          "Value": "фон.jpg"
+          "Value": "css/фон.jpg"
         },
         {
           "Name": "integrity",
@@ -5293,8 +5293,8 @@
       ]
     },
     {
-      "Route": "фон.jpg",
-      "AssetFile": "/Users/terroor/Desktop/Const/wwwroot/фон.jpg",
+      "Route": "css/фон.jpg",
+      "AssetFile": "/Users/terroor/Desktop/Const/wwwroot/css/фон.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5368,12 +5368,12 @@
     },
     {
       "Route": "css/site.css",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-o3bir1bzvo.gz",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-sz948hxndm.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.004219409283"
+          "Quality": "0.001718213058"
         }
       ],
       "ResponseHeaders": [
@@ -5383,15 +5383,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "236"
+          "Value": "581"
         },
         {
           "Name": "ETag",
-          "Value": "\"HzX1jXJtJmVxmuC41bgPS8NiQKl098Mfh7Dy7gZMsiE=\""
+          "Value": "\"PZKQ/uh85bN2Rn99/6gnWGf9dhMdBTLhvOq+9yZFkWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 17:55:56 GMT"
+          "Value": "Fri, 10 Jan 2025 13:59:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5411,13 +5411,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI=\""
+          "Value": "W/\"aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI="
+          "Value": "sha256-aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A="
         }
       ]
     },
@@ -5432,7 +5432,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "364"
+          "Value": "1149"
         },
         {
           "Name": "Content-Type",
@@ -5440,11 +5440,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI=\""
+          "Value": "\"aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 17:55:56 GMT"
+          "Value": "Fri, 10 Jan 2025 13:59:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5454,13 +5454,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI="
+          "Value": "sha256-aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A="
         }
       ]
     },
     {
       "Route": "css/site.css.gz",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-o3bir1bzvo.gz",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-sz948hxndm.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5469,7 +5469,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "236"
+          "Value": "581"
         },
         {
           "Name": "Content-Type",
@@ -5477,11 +5477,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HzX1jXJtJmVxmuC41bgPS8NiQKl098Mfh7Dy7gZMsiE=\""
+          "Value": "\"PZKQ/uh85bN2Rn99/6gnWGf9dhMdBTLhvOq+9yZFkWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 17:55:56 GMT"
+          "Value": "Fri, 10 Jan 2025 13:59:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5499,18 +5499,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-HzX1jXJtJmVxmuC41bgPS8NiQKl098Mfh7Dy7gZMsiE="
+          "Value": "sha256-PZKQ/uh85bN2Rn99/6gnWGf9dhMdBTLhvOq+9yZFkWA="
         }
       ]
     },
     {
-      "Route": "css/site.o3bir1bzvo.css",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-o3bir1bzvo.gz",
+      "Route": "css/site.sz948hxndm.css",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-sz948hxndm.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.004219409283"
+          "Quality": "0.001718213058"
         }
       ],
       "ResponseHeaders": [
@@ -5520,15 +5520,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "236"
+          "Value": "581"
         },
         {
           "Name": "ETag",
-          "Value": "\"HzX1jXJtJmVxmuC41bgPS8NiQKl098Mfh7Dy7gZMsiE=\""
+          "Value": "\"PZKQ/uh85bN2Rn99/6gnWGf9dhMdBTLhvOq+9yZFkWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 17:55:56 GMT"
+          "Value": "Fri, 10 Jan 2025 13:59:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5548,13 +5548,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI=\""
+          "Value": "W/\"aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "o3bir1bzvo"
+          "Value": "sz948hxndm"
         },
         {
           "Name": "label",
@@ -5562,12 +5562,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI="
+          "Value": "sha256-aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A="
         }
       ]
     },
     {
-      "Route": "css/site.o3bir1bzvo.css",
+      "Route": "css/site.sz948hxndm.css",
       "AssetFile": "/Users/terroor/Desktop/Const/wwwroot/css/site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5577,7 +5577,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "364"
+          "Value": "1149"
         },
         {
           "Name": "Content-Type",
@@ -5585,11 +5585,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI=\""
+          "Value": "\"aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 17:55:56 GMT"
+          "Value": "Fri, 10 Jan 2025 13:59:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5599,7 +5599,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "o3bir1bzvo"
+          "Value": "sz948hxndm"
         },
         {
           "Name": "label",
@@ -5607,13 +5607,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-tBdzWsYas5ccC9ZSCs++CPRtZUpbPWwHcHfY1/wnQGI="
+          "Value": "sha256-aDjt3cMPxPahLIoH/DsgWWG2maWmpzzFKo6c+DmZB3A="
         }
       ]
     },
     {
-      "Route": "css/site.o3bir1bzvo.css.gz",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-o3bir1bzvo.gz",
+      "Route": "css/site.sz948hxndm.css.gz",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/sfr9826l73-sz948hxndm.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5622,7 +5622,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "236"
+          "Value": "581"
         },
         {
           "Name": "Content-Type",
@@ -5630,11 +5630,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HzX1jXJtJmVxmuC41bgPS8NiQKl098Mfh7Dy7gZMsiE=\""
+          "Value": "\"PZKQ/uh85bN2Rn99/6gnWGf9dhMdBTLhvOq+9yZFkWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 17:55:56 GMT"
+          "Value": "Fri, 10 Jan 2025 13:59:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5652,7 +5652,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "o3bir1bzvo"
+          "Value": "sz948hxndm"
         },
         {
           "Name": "label",
@@ -5660,7 +5660,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-HzX1jXJtJmVxmuC41bgPS8NiQKl098Mfh7Dy7gZMsiE="
+          "Value": "sha256-PZKQ/uh85bN2Rn99/6gnWGf9dhMdBTLhvOq+9yZFkWA="
         }
       ]
     },
@@ -33856,13 +33856,13 @@
       ]
     },
     {
-      "Route": "WebApplication1.bundle.scp.css",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-klimuduuo1.gz",
+      "Route": "WebApplication1.602w4uddge.bundle.scp.css",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-602w4uddge.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001858736059"
+          "Quality": "0.001855287570"
         }
       ],
       "ResponseHeaders": [
@@ -33872,19 +33872,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "537"
+          "Value": "538"
         },
         {
           "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -33900,18 +33900,26 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
+          "Value": "W/\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "602w4uddge"
+        },
+        {
+          "Name": "label",
+          "Value": "WebApplication1.bundle.scp.css"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
         }
       ]
     },
     {
-      "Route": "WebApplication1.bundle.scp.css",
+      "Route": "WebApplication1.602w4uddge.bundle.scp.css",
       "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -33921,7 +33929,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1084"
+          "Value": "1085"
         },
         {
           "Name": "Content-Type",
@@ -33929,121 +33937,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
+          "Value": "\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
-        }
-      ]
-    },
-    {
-      "Route": "WebApplication1.bundle.scp.css.gz",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-klimuduuo1.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "537"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8="
-        }
-      ]
-    },
-    {
-      "Route": "WebApplication1.klimuduuo1.bundle.scp.css",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-klimuduuo1.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.001858736059"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "537"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "klimuduuo1"
+          "Value": "602w4uddge"
         },
         {
           "Name": "label",
@@ -34051,13 +33959,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
         }
       ]
     },
     {
-      "Route": "WebApplication1.klimuduuo1.bundle.scp.css",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css",
+      "Route": "WebApplication1.602w4uddge.bundle.scp.css.gz",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-602w4uddge.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -34066,7 +33974,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1084"
+          "Value": "538"
         },
         {
           "Name": "Content-Type",
@@ -34074,56 +33982,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "klimuduuo1"
-        },
-        {
-          "Name": "label",
-          "Value": "WebApplication1.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
-        }
-      ]
-    },
-    {
-      "Route": "WebApplication1.klimuduuo1.bundle.scp.css.gz",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-klimuduuo1.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "537"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34141,7 +34004,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "klimuduuo1"
+          "Value": "602w4uddge"
         },
         {
           "Name": "label",
@@ -34149,18 +34012,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8="
+          "Value": "sha256-1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg="
         }
       ]
     },
     {
-      "Route": "WebApplication1.klimuduuo1.styles.css",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-klimuduuo1.gz",
+      "Route": "WebApplication1.602w4uddge.styles.css",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-602w4uddge.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001858736059"
+          "Quality": "0.001855287570"
         }
       ],
       "ResponseHeaders": [
@@ -34170,15 +34033,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "537"
+          "Value": "538"
         },
         {
           "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34198,13 +34061,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
+          "Value": "W/\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "klimuduuo1"
+          "Value": "602w4uddge"
         },
         {
           "Name": "label",
@@ -34212,12 +34075,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
         }
       ]
     },
     {
-      "Route": "WebApplication1.klimuduuo1.styles.css",
+      "Route": "WebApplication1.602w4uddge.styles.css",
       "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/bundle/WebApplication1.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -34227,7 +34090,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1084"
+          "Value": "1085"
         },
         {
           "Name": "Content-Type",
@@ -34235,11 +34098,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
+          "Value": "\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34249,7 +34112,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "klimuduuo1"
+          "Value": "602w4uddge"
         },
         {
           "Name": "label",
@@ -34257,13 +34120,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
         }
       ]
     },
     {
-      "Route": "WebApplication1.klimuduuo1.styles.css.gz",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-klimuduuo1.gz",
+      "Route": "WebApplication1.602w4uddge.styles.css.gz",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-602w4uddge.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -34272,7 +34135,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "537"
+          "Value": "538"
         },
         {
           "Name": "Content-Type",
@@ -34280,11 +34143,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34302,7 +34165,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "klimuduuo1"
+          "Value": "602w4uddge"
         },
         {
           "Name": "label",
@@ -34310,18 +34173,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8="
+          "Value": "sha256-1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg="
         }
       ]
     },
     {
-      "Route": "WebApplication1.styles.css",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-klimuduuo1.gz",
+      "Route": "WebApplication1.bundle.scp.css",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-602w4uddge.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001858736059"
+          "Quality": "0.001855287570"
         }
       ],
       "ResponseHeaders": [
@@ -34331,15 +34194,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "537"
+          "Value": "538"
         },
         {
           "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34359,13 +34222,150 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
+          "Value": "W/\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
+        }
+      ]
+    },
+    {
+      "Route": "WebApplication1.bundle.scp.css",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1085"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
+        }
+      ]
+    },
+    {
+      "Route": "WebApplication1.bundle.scp.css.gz",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/4ej8qvsbid-602w4uddge.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "538"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg="
+        }
+      ]
+    },
+    {
+      "Route": "WebApplication1.styles.css",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-602w4uddge.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001855287570"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "538"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
         }
       ]
     },
@@ -34380,7 +34380,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1084"
+          "Value": "1085"
         },
         {
           "Name": "Content-Type",
@@ -34388,11 +34388,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw=\""
+          "Value": "\"2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34402,13 +34402,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WGbJ/VVbpfi8WvgdXcB2hriVmkB4q3VaSvXgKo9hmLw="
+          "Value": "sha256-2mFu94OSZ6X1vSN2pnQSZvy5Qzlztg/TorApCRE/pNY="
         }
       ]
     },
     {
       "Route": "WebApplication1.styles.css.gz",
-      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-klimuduuo1.gz",
+      "AssetFile": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/compressed/mz4azubuim-602w4uddge.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -34417,7 +34417,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "537"
+          "Value": "538"
         },
         {
           "Name": "Content-Type",
@@ -34425,11 +34425,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8=\""
+          "Value": "\"1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 06 Jan 2025 08:05:38 GMT"
+          "Value": "Fri, 10 Jan 2025 14:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34447,7 +34447,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/Jvh3QRVLEOzI7j7tiud58IGhvIxrqzSL8LyOPRfbu8="
+          "Value": "sha256-1lRQyJRET9d6XkTCCbVTKZoRnp7LdOSopkjDqbTx5pg="
         }
       ]
     }

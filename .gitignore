@@ -69,3 +69,5 @@ __pycache__/
 ../../../.zsh_history
 ../../../.zsh_sessions/
 ../../../.zshrc
+
+.fake

@@ -2,11 +2,15 @@
   "Files": [
     {
       "Id": "/Users/terroor/Desktop/Const/obj/Debug/net9.0/scopedcss/projectbundle/WebApplication1.bundle.scp.css",
-      "PackagePath": "staticwebassets/WebApplication1.klimuduuo1.bundle.scp.css"
+      "PackagePath": "staticwebassets/WebApplication1.602w4uddge.bundle.scp.css"
     },
     {
       "Id": "/Users/terroor/Desktop/Const/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/terroor/Desktop/Const/wwwroot/css/фон.jpg",
+      "PackagePath": "staticwebassets/css/фон.jpg"
     },
     {
       "Id": "/Users/terroor/Desktop/Const/wwwroot/favicon.ico",
@@ -243,10 +247,6 @@
     {
       "Id": "/Users/terroor/Desktop/Const/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
-    },
-    {
-      "Id": "/Users/terroor/Desktop/Const/wwwroot/фон.jpg",
-      "PackagePath": "staticwebassets/фон.jpg"
     },
     {
       "Id": "obj/Debug/net9.0/staticwebassets/msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
