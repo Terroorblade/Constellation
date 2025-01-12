@@ -167,7 +167,7 @@ body{
                     $('#eventList').empty(); // Очистка списка задач
                     $('#eventDate').val(selectedDate); // Устанавливаем выбранную дату в форму
 
-                    $.get('/Calendar/GetEvents', function (data) {
+                    @* $.get('/Calendar/GetEvents', function (data) {
                         const eventsForDay = data.filter(e => e.start === selectedDate);
                         eventsForDay.forEach(e => {
                             const isChecked = e.status ? "checked" : "";
@@ -184,7 +184,42 @@ body{
                             `);
                         });
                         $('#tasksForDayModal').modal('show');
-                    });
+                    }); *@
+
+                    $.get('/Calendar/GetEvents', function (data) {
+    const eventsForDay = data.filter(e => e.start === selectedDate);
+    eventsForDay.forEach(e => {
+        const isChecked = e.status ? "checked" : "";
+        if (e.type === 'event') {
+            // Для событий
+            $('#eventList').append(`
+                <li class="list-group-item ${e.priority === 'low' ? 'priority-low' : e.priority === 'medium' ? 'priority-medium' : 'priority-high'}">
+                    <strong>Задача:</strong> ${e.title}<br>
+                    <strong>Описание:</strong> ${e.description || 'Нет описания'}<br>
+                    <strong>Приоритет:</strong> ${e.priority === 'low' ? 'Низкий' : e.priority === 'medium' ? 'Средний' : 'Высокий'}<br>
+                    <input type="checkbox" class="status-checkbox" data-event-id="${e.id}" ${isChecked}>
+                    <label>Выполнено</label>
+                    <br>
+                    <button class="btn btn-danger btn-sm delete-event-button" data-event-id="${e.id}" style="position: absolute; bottom: 10px; right: 10px;">Удалить</button>
+                </li>
+            `);
+        } else if (e.type === 'habit') {
+            // Для привычек
+            $('#eventList').append(`
+                <li class="list-group-item ${e.priority === 'low' ? 'priority-low' : e.priority === 'medium' ? 'priority-medium' : 'priority-high'}"">
+                    <strong>Привычка:</strong> ${e.title}<br>
+                    <strong>Описание:</strong> ${e.description || 'Нет описания'}<br>
+                    <input type="checkbox" class="habit-status-checkbox" data-habit-id="${e.id}" ${isChecked}>
+                    <label>Выполнено</label>
+                    <br>
+                    <button class="btn btn-danger btn-sm delete-event-button" data-event-id="${e.id}" style="position: absolute; bottom: 10px; right: 10px;">Удалить</button>
+                </li>
+            `);
+        }
+    });
+    $('#tasksForDayModal').modal('show');
+});
+
                 }
             });
             // Обработчик для удаления события
@@ -302,8 +337,9 @@ $(document).on('click', '.delete-event-button', function () {
             $(document).on('change', '.habit-status-checkbox', function () {
                 const habitId = $(this).data('habit-id');
                 const status = $(this).is(':checked');
+                const scheduleDate =$('#tasksForDayModal').data('selectedDate');
 
-                $.post('/Calendar/UpdateHabitStatus', { habitId, status })
+                $.post('/Calendar/UpdateHabitStatus', { habitId,scheduleDate, status })
                     .done(() => alert('Статус обновлен!'))
                     .fail(() => alert('Ошибка обновления статуса.'));
             });
