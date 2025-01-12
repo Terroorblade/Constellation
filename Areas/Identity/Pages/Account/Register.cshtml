@@ -3,30 +3,164 @@
 @{
     ViewData["Title"] = "Регистрация";
 }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: Georgia, serif;
+        background-color: #f8f9fa;
+        color: aliceblue;
+        display: grid; /* Используем grid */
+        @* place-items: center; /* Центрируем содержимое */ *@
+        @* grid-template-rows: auto 1fr; /* Создаем 2 строки: авто-высота для заголовка и 1fr для кнопок */ *@
+    }
+
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/фон.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px);
+        z-index: -1;
+    }
+
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1 200px;
+        align-items: center; /* Центрируем содержимое внутри контейнера */
+        @* text-align: center; /* Центрируем текст */ *@
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+         max-width: 600px;
+         margin-left: 340px;
+    }
+
+    h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    h4 {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 400px;
+    }
+hr {
+  width: 400px;
+}
+.form-control::placeholder {
+  color: rgb(13, 13, 46);
+}
+.form-label {
+  color: rgb(13, 13, 46);
+}
+a {
+    color:aliceblue;
+}
+    .auth-buttons .btn {
+        font-size: 1.5rem;
+        padding: 20px 50px;
+        border-radius: 10px;
+        width: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .auth-buttons .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        width: 100%;
+    }
+
+    .btn-login {
+        background-color: #8a61f1;
+        color: white;
+        border: none;
+        width: 100%;
+         padding: 20px 45px; /* Увеличиваем размер кнопок */
+    font-size: 18px; /* Увеличиваем размер текста */
+    }
+
+    .btn-login:hover {
+        background-color: #935fd2;
+        width: 100%;
+    }
+
+    /* Навигационная панель */
+    header {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    .navbar {
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+       h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: aliceblue;
+        text-shadow: 1px 1px 3px rgba(39, 35, 35, 0.71);
+    }
+     .btn-register {
+        background-color: #4856c1;
+        color: white;
+        border: none;
+    }
+
+    .btn-register:hover {
+        background-color: #4f4dc3;
+    }
+
+</style>
+<div class="content-container ">
 
 <h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" method="post" >
-            <h3>Создайте новый аккаунт.</h3>
+            @* <h3>Создайте новый аккаунт.</h3> *@
             <hr />
+             <div class="auth-buttons">
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
+                <label asp-for="Input.Email"  class="form-label">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Пароль</label>
+                <label asp-for="Input.Password"  class="form-label">Пароль</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Регистрация</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary btn-register">Регистрация</button>
+             <div>
+                    <p>
+                        <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Войти в аккаунт</a>
+                    </p>
+                </div>
         </form>
     </div>
+    </div>
 </div>
-
+</div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

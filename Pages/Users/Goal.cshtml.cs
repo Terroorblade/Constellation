@@ -108,4 +108,93 @@ public IActionResult AddGoal([FromBody] Goal model)
 
         return Ok();
     }
+[HttpGet("GetGoalDetails/{goalId}")]
+public IActionResult GetGoalDetails(int goalId)
+{
+    var userId = User.Identity?.Name;
+    var user = _context.Users.FirstOrDefault(u => u.Username == userId);
+
+    if (user == null) return Unauthorized();
+
+    // var goal = _context.Goals
+    //     .Include(g => g.GoalSphere) // Включение информации о сфере жизни, если она связана
+    //     .FirstOrDefault(g => g.GoalId == goalId && g.UserId == user.IdUser);
+var goal = _context.Goals
+    .Include(g => g.GoalSphereNavigation)
+    .Include(g => g.Habits.Where(h => h.Status==false))
+    .FirstOrDefault(g => g.GoalId == goalId);
+
+
+    if (goal == null) return NotFound();
+
+    // Формируем ответ
+    var goalDetails = new
+    {
+        id = goal.GoalId,
+        name = goal.Name,
+        description = goal.Description,
+        deadline = goal.Deadline?.ToString("yyyy-MM-dd"),
+        sphere = goal.GoalSphere?.ToString() ?? "Не указана",
+        status = goal.Status
+    };
+
+    return Json(goalDetails);
+}
+
+[HttpPost("CreateHabitForGoal")]
+
+public IActionResult CreateHabitForGoal(int goalId)
+{
+    var userId = User.Identity?.Name;
+    var user = _context.Users.FirstOrDefault(u => u.Username == userId);
+
+    if (user == null) return Unauthorized();
+
+    var goal = _context.Goals.Include(g => g.Habits).FirstOrDefault(g => g.GoalId == goalId && g.UserId == user.IdUser);
+    if (goal == null) return NotFound();
+
+    // Создание привычки по цели
+    var habit = new Habit
+    {
+        Name = goal.Name,
+        Description = goal.Description,
+        Frequency = TimeSpan.FromDays(1), // Устанавливаем частоту привычки на ежедневную
+        Status = false,
+        GoalHabit = goal.GoalId
+    };
+
+    _context.Habits.Add(habit);
+    _context.SaveChanges();
+
+    // Добавляем привычку в расписание на 28 дней вперёд
+    for (int i = 0; i < 28; i++)
+    {
+         var scheduleDate = DateOnly.FromDateTime(DateTime.Now.AddDays(i));
+        var schedule = _context.DailySchedules.FirstOrDefault(ds => ds.UserSchedule == user.IdUser && ds.ScheduleData == scheduleDate);
+
+        if (schedule == null)
+        {
+            schedule = new DailySchedule
+            {
+                ScheduleData = scheduleDate,
+                UserSchedule = user.IdUser
+            };
+            _context.DailySchedules.Add(schedule);
+            _context.SaveChanges();
+        }
+
+        var habitOfTheDay = new HabitOfTheDay
+        {
+            HabitDay = habit.HabitId,
+            ScheduleDay = schedule.ScheduleId,
+            Status = false
+        };
+
+        _context.HabitOfTheDays.Add(habitOfTheDay);
+    }
+    _context.SaveChanges();
+
+    return Ok();
+}
+
 }

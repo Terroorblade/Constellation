@@ -147,6 +147,42 @@ public IActionResult DeleteEvent([FromBody] int eventId)
 
     return Ok();
 }
+[HttpPost("UpdateHabitStatus")]
+public IActionResult UpdateHabitStatus(int habitId, DateOnly scheduleDate, bool status)
+{
+    var userId = User.Identity?.Name;
+    var user = _context.Users.FirstOrDefault(u => u.Username == userId);
 
+    if (user == null) return Unauthorized();
 
+    var habitDayToUpdate = _context.HabitOfTheDays
+        .Include(h => h.ScheduleDayNavigation)
+        .FirstOrDefault(h => h.HabitDay == habitId && h.ScheduleDayNavigation.ScheduleData == scheduleDate);
+
+    if (habitDayToUpdate == null) return NotFound();
+
+    habitDayToUpdate.Status = status;
+    _context.SaveChanges();
+
+    return Ok();
+}
+[HttpPost("DeleteHabit")]
+public IActionResult DeleteHabit(int habitId, DateOnly scheduleDate)
+{
+    var userId = User.Identity?.Name;
+    var user = _context.Users.FirstOrDefault(u => u.Username == userId);
+
+    if (user == null) return Unauthorized();
+
+    var habitDayToDelete = _context.HabitOfTheDays
+        .Include(h => h.ScheduleDayNavigation)
+        .FirstOrDefault(h => h.HabitDay == habitId && h.ScheduleDayNavigation.ScheduleData == scheduleDate);
+
+    if (habitDayToDelete == null) return NotFound();
+
+    _context.HabitOfTheDays.Remove(habitDayToDelete);
+    _context.SaveChanges();
+
+    return Ok();
+}
 }

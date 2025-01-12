@@ -5,12 +5,12 @@
 }
 <style>
     .event-widget {
-        background-color: #e4a2ec !important;
-        color: #000000 !important;
+        background-color: #6067eb !important;
+        color: #ffffff !important;
     }
     .habit-widget {
-        background-color: #9298d3 !important;
-        color: #000000 !important;
+        background-color: #9757f8 !important;
+        color: #ffffff !important;
     }
     .priority-low {
         border: 2px solid rgb(137, 195, 170);
@@ -25,12 +25,46 @@
         background-color: rgba(255, 0, 0, 0.1);
     }
      .back {color: #ffffff !important;
-        background-color: rgb(131, 149, 179);}
+        background-color: rgb(126, 106, 197);
+         padding: 15px 30px; /* Увеличиваем размер кнопок */
+    font-size: 18px; 
+        }
+    .back:hover {
+    background-color: #8367b2;
+    }
+body{
+            color:aliceblue;
+            font-family: Georgia, serif;
+        }
+        
+    .content-container {
+        display: flex;
+        @* flex-direction: column; *@
+        @* flex-wrap: wrap; *@
+        @* flex: 1 200px; *@
+        @* align-items: center; /* Центрируем содержимое внутри контейнера */ *@
+        @* text-align: center; /* Центрируем текст */ *@
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.381);
+         max-width: 1200px;
+         margin-left: 70px;
+    }
+    .create
+    {color: black;}
+    .fc-today {
+  background-color: #21202770; /* Ваш желаемый цвет фона */
+}
 </style>
 
+<div class="background"></div>
+<div class="content-container ">
 <div class="container mt-4" style="padding-bottom: 20px;">
 <a asp-page="/Users/Details" class="btn back">Назад в личный кабинет</a>
-    <div id="calendar" style="max-width: 90%; margin: 0 auto; margin-top: 20px;"></div>
+
+    <div id="calendar" style="max-width: 90%; margin: 0 auto; margin-top: 20px; " class="fc-today"></div>
+</div>
 </div>
 
 <!-- Модальное окно для отображения задач на день -->
@@ -38,14 +72,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tasksForDayModalLabel">Задачи на день</h5>
+                <h5 class="modal-title create" id="tasksForDayModalLabel">Задачи на день</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <ul id="eventList" class="list-group">
                     <!-- Данные будут динамически добавляться сюда -->
                 </ul>
-                <button class="btn btn-primary mt-3" id="openAddEventModalButton">Добавить событие</button>
+                <button class="btn btn-primary mt-3 create" id="openAddEventModalButton">Добавить событие</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -59,25 +93,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="eventModalLabel">Добавить событие</h5>
+                <h5 class="modal-title create" id="eventModalLabel">Добавить событие</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
                 <form id="addEventForm">
                     <div class="mb-3">
-                        <label for="eventTitle" class="form-label">Название события</label>
+                        <label for="eventTitle" class="form-label create">Название события</label>
                         <input type="text" class="form-control" id="eventTitle" required />
                     </div>
                     <div class="mb-3">
-                        <label for="eventDescription" class="form-label">Описание</label>
+                        <label for="eventDescription" class="form-label create">Описание</label>
                         <textarea class="form-control" id="eventDescription" rows="3"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="eventDate" class="form-label">Дата</label>
+                        <label for="eventDate" class="form-label create">Дата</label>
                         <input type="text" class="form-control" id="eventDate" readonly />
                     </div>
                     <div class="mb-3">
-                        <label for="eventPriority" class="form-label">Приоритет</label>
+                        <label for="eventPriority" class="form-label create">Приоритет</label>
                         <select class="form-select" id="eventPriority">
                             <option value="low">Низкий</option>
                             <option value="medium">Средний</option>
@@ -259,6 +293,17 @@ $(document).on('click', '.delete-event-button', function () {
                 const status = $(this).is(':checked');
 
                 $.post('/Calendar/UpdateEventStatus', { eventId, status })
+                    .done(() => alert('Статус обновлен!'))
+                    .fail(() => alert('Ошибка обновления статуса.'));
+            });
+       
+
+        // Обновление статуса привычки
+            $(document).on('change', '.habit-status-checkbox', function () {
+                const habitId = $(this).data('habit-id');
+                const status = $(this).is(':checked');
+
+                $.post('/Calendar/UpdateHabitStatus', { habitId, status })
                     .done(() => alert('Статус обновлен!'))
                     .fail(() => alert('Ошибка обновления статуса.'));
             });

@@ -6,26 +6,60 @@
 }
 
 <style>
-/* Общие стили для страницы */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+.button-container {
+    display: flex;
+    justify-content: space-between;  /* Равномерное распределение колонок */
+    align-items: flex-start;  /* Выравнивание по верхнему краю */
+    text-align: center;  /* Центрирование текста внутри колонок */
+    gap: 70px; /* Отступы между колонками */
+    margin-top: 20px;
+    position: relative;
 }
 
-/* Стили для шапки */
-.header {
+/* Колонки */
+.button-column {
     display: flex;
-    justify-content: space-between; /* Распределение кнопок по краям */
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f1f1f1;
-    position: relative;
+    flex-direction: column;  /* Оставляем элементы внутри колонки вертикально */
+    align-items: center;  /* Центрируем элементы по горизонтали */
+    position: relative;  /* Для псевдоэлемента */
+    @* padding: 0 15px;  /* Добавляем немного отступа по бокам */ *@
+}
+
+/* Горизонтальное разделение между колонками (сверху) */
+.button-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ccc;  /* Цвет разделителя */
+}
+
+/* Стили для текста (подписи) */
+.button-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* Стили для кнопок */
+.test-btn, .results-btn {
+    margin-top: 10px; /* Добавляем отступ между кнопками */
+}
+
+/* Стили для блока с кнопками теста и результатами */
+.test-buttons {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; /* Расстояние между кнопками */
+    align-items: center; /* Центрируем кнопки */
 }
 
 /* Стили для кнопок */
 .calendar-btn, .goals-btn, .test-btn, .results-btn {
-    padding: 15px 30px; /* Увеличиваем размер кнопок */
+    padding: 20px 45px; /* Увеличиваем размер кнопок */
     font-size: 18px; /* Увеличиваем размер текста */
     border-radius: 5px;
     text-decoration: none;
@@ -35,74 +69,89 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Цвета кнопок */
 .calendar-btn {
-    background-color: #e557bd; /* Цвет кнопки Календарь */
-    padding: 20px 35px; /* Увеличиваем размер */
-    font-size: 22px; /* Увеличиваем шрифт */
-        flex-direction: column; 
+    background-color: #bb52c1f4; 
 }
 
 .goals-btn {
-    background-color: #d767a7;
-   padding:20px 35px; /* Увеличиваем размер */
-    font-size: 22px; /* Увеличиваем шрифт */
-    margin: 0 20px; /* Отступы для центровки */
-        flex-direction: column; 
+    background-color: #d767a6f3;
 }
 
 .test-btn {
-    background-color: #5f6aeb; /* Цвет кнопки Пройти тест */
-    margin-right: 15px; /* Добавляем отступ для разделения кнопок */
+    background-color: #5f6bebe9; 
 }
 
 .results-btn {
-    background-color: #715bcc; /* Цвет кнопки Результаты */
+    background-color: #725bccf2; 
 }
 
 /* Наведение на кнопки */
 .calendar-btn:hover {
-    background-color: #7c3fed;
+    background-color: #7c3fedf0;
 }
 
 .goals-btn:hover {
-    background-color: #f52eee;
+    background-color: #f52eeef0;
 }
 
 .test-btn:hover {
-    background-color: #459cd5;
+    background-color: #459bd5e8;
 }
 
 .results-btn:hover {
-    background-color: #896cf9;
+    background-color: #886cf9e8;
 }
+body{
+            color:aliceblue;
+            font-family: Georgia, serif;
+        }
+        .goals-label {
+    margin-left: 50px; /* Добавляет отступ слева */
+}
+       .calendar-label {
+    margin-left: 30px; /* Добавляет отступ слева */
+}
+.set-btn {
+    background-color: #5d64af; 
+    color:white;
+}
+ .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 
-.button-container {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center; /* Центрируем кнопки */
-    align-items: center;
-    gap: 80px; /* Отступы между блоками текста и кнопками */
-    margin-top: 20px;
-    text-align: center;
-}
-/* Блок с кнопками теста и результатами */
-.test-buttons {
-    display: flex;
-    justify-content: flex-end; /* Кнопки теста и результата справа */
-    flex-direction: column; 
-    gap: 10px; /* Расстояние между кнопками */
-    margin-top: 10px;
-}
-.button-label {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333; /* Цвет текста */
-    display: block; /* Блочный элемент для выравнивания текста */
-    margin-bottom: 10px; /* Отступ снизу для подписи */
-}
+    .auth-buttons .btn {
+        font-size: 1.5rem;
+        padding: 20px 50px;
+        border-radius: 10px;
+        width: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
+    .auth-buttons .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    .modal-title{color:black;}
+     .content-container {
+        display: flex;
+        @* flex-direction: column; *@
+        @* flex-wrap: wrap; *@
+        @* flex: 1 200px; *@
+        @* align-items: center; /* Центрируем содержимое внутри контейнера */ *@
+        @* text-align: center; /* Центрируем текст */ *@
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.381);
+         max-width: 1200px;
+         margin-left: 70px;
+    }
 </style>
 
+<div class="background"></div>
 <div class="profile-container text-center">
     <div class="profile-header">
         <h1>Личный кабинет</h1>
@@ -114,7 +163,7 @@ body {
             <div class="col-md-12">
                 <h5 class="mb-3">Пользователь: @Html.DisplayFor(model => model.Users.Username)</h5>
                 <!-- Кнопка для вызова модального окна -->
-                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#accountSettingsModal">
+                <button type="button" class="btn btn-sm btn-outline-primary set-btn" data-bs-toggle="modal" data-bs-target="#accountSettingsModal">
                     Настройки аккаунта
                 </button>
             </div>
@@ -126,7 +175,7 @@ body {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="accountSettingsModalLabel">Настройки аккаунта</h5>
+                    <h5 class="modal-title " id="accountSettingsModalLabel">Настройки аккаунта</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
@@ -150,53 +199,38 @@ body {
         </div>
     </div>
 </div>
+
 <div class="profile-actions mt-5 text-center">
-    <h2>Действия</h2>
-    <hr />
-
-
-<div class="button-container">
-    <span style="margin-right: 70px;"></span> 
-    <span class="button-label">Календарь</span>
-   <span style="margin-right: 15px;"></span> 
-    <span style="margin-left: 30px;"></span> 
-    <span class="button-label">Цели</span>
-    <span style="margin-right: 50px;"></span> 
-    <span class="button-label">Тест на анализ сфер жизни</span>
-    <span style="margin-right: 25px;"></span> 
-</div>
-
-@* <span class="button-label">Календарь</span>
-<span class="button-label">Цели</span> 
-<span class="button-label">Тест на анализ сфер жизни</span> *@
-
-    <div class="button-container">
-         
-       
-        <!-- Кнопка "Календарь" слева -->
-        <a asp-page="/Users/Calendar" asp-route-id="@Model.Users.IdUser" class="calendar-btn">
-            Перейти к календарю
-        </a>
-
-        <!-- Кнопка "Мои цели" по центру -->
-         
-         
-        <a asp-page="/Users/Goal" asp-route-id="@Model.Users.IdUser" class="goals-btn">
-            Мои цели
-        </a>
-
-        <!-- Блок с кнопками теста и результатов справа -->
-        <div class="test-buttons">
-        
-           
-            <a asp-page="/UserSphereSatisfaction/Test" class="test-btn">
-                Пройти тест
+    <div class="button-container content-container">
+        <!-- Первая колонка (Календарь) -->
+        <div class="button-column">
+            <span class="button-label calendar-label">Календарь</span>
+            <hr/>
+            <a asp-page="/Users/Calendar" asp-route-id="@Model.Users.IdUser" class="calendar-btn calendar-label">
+                Перейти к календарю
             </a>
-            
-            <!-- Кнопка для просмотра результатов теста -->
-            <a asp-page="/UserSphereSatisfaction/TestResults" asp-route-userId="@Model.Users.IdUser" class="results-btn">
-                Просмотреть результаты теста
+        </div>
+
+        <!-- Вторая колонка (Цели) -->
+        <div class="button-column">
+            <span class="button-label goals-label" >Цели</span>
+               <hr/>
+            <a asp-page="/Users/Goal" asp-route-id="@Model.Users.IdUser" class="goals-btn goals-label">
+                Мои цели
             </a>
+        </div>
+
+        <!-- Третья колонка (Тест на анализ сфер жизни) -->
+        <div class="button-column">
+            <span class="button-label">Тест</span>
+            <div class="test-buttons">
+                <a asp-page="/UserSphereSatisfaction/Test" class="test-btn">
+                    Пройти тест на анализ сфер жизни
+                </a>
+                <a asp-page="/UserSphereSatisfaction/TestResults" asp-route-userId="@Model.Users.IdUser" class="test-btn">
+                    Просмотреть результаты теста
+                </a>
+            </div>
         </div>
     </div>
 </div>

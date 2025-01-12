@@ -4,11 +4,25 @@
     ViewData["Title"] = "Календарь";
 }
 <style>
+    .column-left,
+.column-right {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Центрируем содержимое по горизонтали */
+    @* justify-content: center;   *@
+    
+}
+
+.column-left {
+    border-right: 2px solid #ccc; /* Вертикальная граница между колонками */
+}
     .header-buttons {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
+        
     }
     .header-buttons .btn {
         margin-top: 10px; /* Отступ сверху */
@@ -23,7 +37,68 @@
         font-size: 18px;
         padding: 10px 20px; /* Размер кнопки */
     }
+    .bg-blue {
+    background-color: #add8e6d3; /* Легкий синий цвет */
+}
+
+.bg-violet {
+    background-color: #dda0ddbe; /* Легкий фиолетовый цвет */
+}
+.addgoal:hover {
+    background-color: #ca54ca; /* Легкий фиолетовый цвет */
+}
+.back:hover {
+    background-color: #b6a0dd;
+}
+body{
+            color:aliceblue;
+            font-family: Georgia, serif;
+        }
+        .list-group-item {
+  width: 450px;
+  length:100px; /* Или любая другая ширина */
+  @* box-sizing: border-box; *@
+}
+.modal-title{
+color:black;
+@* color:aliceblue; *@
+}
+#goalDetailsModal .modal-body {
+  color: black;
+}
+#createHabitButton,
+{
+      background-color: #402e7dcb;
+}
+.close{background-color: #20226dcb;}
+    .content-container {
+        display: flex;
+        @* flex-direction: column; *@
+        @* flex-wrap: wrap; *@
+        @* flex: 1 200px; *@
+        @* align-items: center; /* Центрируем содержимое внутри контейнера */ *@
+        @* text-align: center; /* Центрируем текст */ *@
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.381);
+         max-width: 1200px;
+         margin-left: 70px;
+    }
 </style>
+
+@* <head>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Подключение Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head> *@
+
+<div class="background"></div>
 
 <div class="container mt-4">
     <div class="header-buttons">
@@ -33,11 +108,47 @@
         <button class="btn addgoal" id="openAddGoalModalButton">Добавить цель</button>
     </div>
     <h2 class="text-center">Мои Цели</h2>
-
-    <ul id="goalList" class="list-group mb-3">
-        <!-- Цели будут добавлены динамически -->
-    </ul>
+  <hr />
+    <!-- Разделяем страницу на 2 колонки -->
+    <div class="row">
+        <div class="content-container">
+        <div class="col-md-6 column-left">
+            <h3>Не выполнено</h3>
+            <ul id="goalListIncomplete" class="list-group mb-3">
+                <!-- Цели с не выполненным статусом будут добавлены сюда -->
+            </ul>
+        </div>
+        <div class="col-md-6 column-right">
+            <h3>Выполнено</h3>
+            <ul id="goalListCompleted" class="list-group mb-3">
+                <!-- Цели с выполненным статусом будут добавлены сюда -->
+            </ul>
+        </div>
+        </div>
+    </div>
 </div>
+
+<!-- Модальное окно для создания привычки -->
+<div class="modal fade" id="goalDetailsModal" tabindex="-1" aria-labelledby="goalDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="goalDetailsModalLabel">Детали цели</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div id="goalDetails">
+                    <!-- Здесь будут отображаться данные цели -->
+                </div>
+                <button class="btn btn-primary mt-3" id="createHabitButton">Сформировать привычку</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Модальное окно для добавления цели -->
 <div class="modal fade" id="goalModal" tabindex="-1" aria-labelledby="goalModalLabel" aria-hidden="true">
@@ -50,11 +161,11 @@
             <div class="modal-body">
                 <form id="addGoalForm">
                     <div class="mb-3">
-                        <label for="goalTitle" class="form-label">Название цели</label>
+                        <label for="goalTitle" class="form-label modal-title">Название цели</label>
                         <input type="text" class="form-control" id="goalTitle" required />
                     </div>
                     <div class="mb-3">
-    <label for="goalSphere" class="form-label">Сфера жизни</label>
+    <label for="goalSphere" class="form-label modal-title">Сфера жизни</label>
     <select class="form-control" id="goalSphere">
         <option value="1">Саморазвитие</option>
         <option value="2">Здоровье</option>
@@ -68,17 +179,17 @@
 </div>
 
                     <div class="mb-3">
-                        <label for="goalDescription" class="form-label">Описание</label>
+                        <label for="goalDescription" class="form-label modal-title">Описание</label>
                         <textarea class="form-control" id="goalDescription" rows="3"></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="goalDeadline" class="form-label">Дедлайн</label>
+                        <label for="goalDeadline" class="form-label modal-title">Дедлайн</label>
                         <input type="date" class="form-control" id="goalDeadline" />
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Закрыть</button>
                 <button type="button" class="btn btn-primary" id="saveGoalButton">Сохранить</button>
             </div>
         </div>
@@ -88,101 +199,174 @@
 @section Scripts {
     <script>
         $(function () {
-            // Функция для загрузки целей
-            function loadGoals() {
-                $('#goalList').empty();
-                $.get('/Goals/GetGoals', function (data) {
-                    data.forEach(goal => {
-                        const isChecked = goal.status ? "checked" : "";
-                        $('#goalList').append(`
-                            <li class="list-group-item">
-                                <strong>${goal.title}</strong><br>
-                                <strong>Описание:</strong> ${goal.description || 'Нет описания'}<br>
-                                <strong>Срок:</strong> ${goal.end || 'Не указан'}<br>
-                                <input type="checkbox" class="status-checkbox" data-goal-id="${goal.id}" ${isChecked}>
-                                <label>Выполнено</label>
-                                <button class="btn btn-danger btn-sm delete-goal-button" data-goal-id="${goal.id}" style="float: right;">Удалить</button>
-                            </li>
-                        `);
-                    });
-                });
-            }
-
-            // Загрузка целей при загрузке страницы
-            loadGoals();
-
-            // Открытие модального окна для добавления цели
-            $('#openAddGoalModalButton').click(function () {
-                $('#goalTitle').val('');
-                $('#goalDescription').val('');
-                $('#goalDeadline').val('');
-                $('#goalModal').modal('show');
-            });
-
-            // Сохранение цели
-            $('#saveGoalButton').click(function () {
-                const title = $('#goalTitle').val();
-                const description = $('#goalDescription').val();
-                const deadline = $('#goalDeadline').val();
-                const sphere = $('#goalSphere').val(); 
-
-                if (!title) {
-                    alert('Название цели обязательно.');
-                    return;
+    // Функция для загрузки целей
+    function loadGoals() {
+        $('#goalListIncomplete').empty();
+        $('#goalListCompleted').empty();
+        
+        $.get('/Goals/GetGoals', function (data) {
+            data.forEach(goal => {
+                const isChecked = goal.status ? "checked" : "";
+                const goalHtml = `
+                    <li class="list-group-item ${goal.status ? 'bg-violet' : 'bg-blue'} goal-widget" data-goal-id="${goal.id}">
+                        <strong>${goal.title}</strong><br>
+                        @* <strong>Описание:</strong> ${goal.description || 'Нет описания'}<br> *@
+                        <strong>Дедлайн:</strong> ${goal.end || 'Не указан'}<br>
+                        <input type="checkbox" class="status-checkbox" data-goal-id="${goal.id}" ${isChecked}>
+                        <label>Выполнено</label>
+                        <button class="btn btn-danger btn-sm delete-goal-button" data-goal-id="${goal.id}" style="float: right;">Удалить</button>
+                    </li>
+                `;
+                
+                if (goal.status) {
+                    // Если цель выполнена, добавляем в колонку "Выполнено"
+                    $('#goalListCompleted').append(goalHtml);
+                } else {
+                    // Если цель не выполнена, добавляем в колонку "Не выполнено"
+                    $('#goalListIncomplete').append(goalHtml);
                 }
-
-                const goalData = {
-                    Name: title,
-                    Description: description,
-                    Deadline: deadline,
-                    GoalSphere: parseInt(sphere)
-                };
-
-                $.ajax({
-                    url: '/Goals/AddGoal',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(goalData),
-                    success: function () {
-                        alert('Цель добавлена успешно!');
-                        $('#goalModal').modal('hide');
-                        loadGoals(); // Обновляем список целей
-                    },
-                    error: function () {
-                        alert('Произошла ошибка при добавлении цели.');
-                    }
-                });
-            });
-
-            // Удаление цели
-            $(document).on('click', '.delete-goal-button', function () {
-                const goalId = $(this).data('goal-id');
-                if (confirm('Вы уверены, что хотите удалить эту цель?')) {
-                    $.ajax({
-                        url: '/Goals/DeleteGoal',
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify(goalId),
-                        success: function () {
-                            alert('Цель удалена успешно!');
-                            loadGoals(); // Обновляем список целей
-                        },
-                        error: function () {
-                            alert('Произошла ошибка при удалении цели.');
-                        }
-                    });
-                }
-            });
-
-            // Обновление статуса цели
-            $(document).on('change', '.status-checkbox', function () {
-                const goalId = $(this).data('goal-id');
-                const status = $(this).is(':checked');
-
-                $.post('/Goals/UpdateGoalStatus', { goalId, status })
-                    .done(() => alert('Статус обновлен!'))
-                    .fail(() => alert('Ошибка обновления статуса.'));
             });
         });
+    }
+
+    // Загрузка целей при загрузке страницы
+    loadGoals();
+
+    // Открытие модального окна для добавления цели
+    $('#openAddGoalModalButton').click(function () {
+        $('#goalTitle').val('');
+        $('#goalDescription').val('');
+        $('#goalDeadline').val('');
+        $('#goalModal').modal('show');
+    });
+
+    // Сохранение цели
+    $('#saveGoalButton').click(function () {
+        const title = $('#goalTitle').val();
+        const description = $('#goalDescription').val();
+        const deadline = $('#goalDeadline').val();
+        const sphere = $('#goalSphere').val(); 
+
+        if (!title) {
+            alert('Название цели обязательно.');
+            return;
+        }
+
+        const goalData = {
+            Name: title,
+            Description: description,
+            Deadline: deadline,
+            GoalSphere: parseInt(sphere)
+        };
+
+        $.ajax({
+            url: '/Goals/AddGoal',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(goalData),
+            success: function () {
+                alert('Цель добавлена успешно!');
+                $('#goalModal').modal('hide');
+                loadGoals(); // Обновляем список целей
+            },
+            error: function () {
+                alert('Произошла ошибка при добавлении цели.');
+            }
+        });
+    });
+
+    // Удаление цели
+    $(document).on('click', '.delete-goal-button', function () {
+        const goalId = $(this).data('goal-id');
+        if (confirm('Вы уверены, что хотите удалить эту цель?')) {
+            $.ajax({
+                url: '/Goals/DeleteGoal',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(goalId),
+                success: function () {
+                    alert('Цель удалена успешно!');
+                    loadGoals(); // Обновляем список целей
+                },
+                error: function () {
+                    alert('Произошла ошибка при удалении цели.');
+                }
+            });
+        }
+    });
+
+    // Обновление статуса цели
+    $(document).on('change', '.status-checkbox', function () {
+        const goalId = $(this).data('goal-id');
+        const status = $(this).is(':checked');
+
+        $.post('/Goals/UpdateGoalStatus', { goalId, status })
+            .done(() => {
+                alert('Статус обновлен!');
+                loadGoals(); // Обновляем цели после изменения статуса
+            })
+            .fail(() => alert('Ошибка обновления статуса.'));
+    });
+});
+
+// Открытие модального окна для просмотра цели
+$(document).on('click', '.goal-widget', function (event) {
+    if (event.target.classList.contains('status-checkbox')) {
+            return; // Выходим, если клик был по чекбоксу
+        }
+
+    const goalId = $(this).data('goal-id');
+
+    $.get(`/Goals/GetGoalDetails/${goalId}`, function (data) {
+
+   const sphereNames = {
+            1: "Саморазвитие",
+            2: "Здоровье",
+            3: "Отдых",
+            4: "Окружение",
+            5: "Любовь",
+            6: "Карьера",
+            7: "Финансы",
+            8: "Духовность"
+        };
+ const sphereName = sphereNames[data.sphere] || "Неизвестная сфера";
+
+        $('#goalDetails').html(`
+            <p><strong>Название:</strong> ${data.name}</p>
+            <p><strong>Описание:</strong> ${data.description || 'Нет описания'}</p>
+            <p><strong>Дедлайн:</strong> ${data.deadline || 'Не указан'}</p>
+            <p><strong>Сфера жизни:</strong> ${sphereName}</p>
+            <p><strong>Статус:</strong> ${data.status ? 'Выполнено' : 'Не выполнено'}</p>
+            
+        `);
+
+        // Привязываем ID цели к кнопке "Сформировать привычку"
+        $('#createHabitButton').data('goal-id', goalId);
+
+        // Показываем модальное окно
+        $('#goalDetailsModal').modal('show');
+        
+    }).fail(function () {
+        alert('Не удалось загрузить данные цели.');
+    });
+});
+
+
+// Обработчик для кнопки "Сформировать привычку"
+$('#createHabitButton').click(function () {
+  const goalId = $('#createHabitButton').data('goal-id');
+
+    $.post(`/Goals/CreateHabitForGoal`, { goalId: goalId })
+        .done(function () {
+            alert('Привычка успешно создана и добавлена в расписание!');
+            $('#goalModal').modal('hide');
+            $('#calendar').fullCalendar('refetchEvents');
+        })
+        .fail(function () {
+            alert('Ошибка при создании привычки.');
+        });
+});
+
+
     </script>
 }

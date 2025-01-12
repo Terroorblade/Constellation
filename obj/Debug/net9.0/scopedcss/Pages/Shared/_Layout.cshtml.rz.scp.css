@@ -47,3 +47,29 @@ button.accept-policy[b-vri0k6kfv3] {
   white-space: nowrap;
   line-height: 60px;
 }
+
+.body-background[b-vri0k6kfv3] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/фон.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px); /* Размытие фона */
+  z-index: -1; /* Поставить фон на задний план */
+  margin: 0;  /* без отступов */
+  /* background-repeat: repeat-x;  */
+  height: 100vh;
+  width: 100vw;
+  /* background-attachment: fixed; */
+  overflow: hidden;
+}
+.content[b-vri0k6kfv3] {
+  position: relative;
+  z-index: 1; /* Поставить контент поверх фона */
+  /* padding: 20px; */
+  width: 100%;
+  box-sizing: border-box;
+}

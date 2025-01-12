@@ -35,10 +35,10 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('фон.jpg');
+  background-image: url("/фон.jpg");
   background-size: cover;
   background-position: center;
-  filter: blur(8px); /* Размытие фона */
+  filter: blur(10px); /* Размытие фона */
   z-index: -1; /* Поставить фон на задний план */
   margin: 0;  /* без отступов */
   /* background-repeat: repeat-x;  */
@@ -47,9 +47,20 @@ body {
   /* background-attachment: fixed; */
   overflow: hidden;
 }
+
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(16, 16, 43, 0.453); /* Затемняющий слой */
+  z-index: 1; /* Поверх размытого изображения */
+}
 .content {
   position: relative;
-  z-index: 1; /* Поставить контент поверх фона */
+  z-index: 2; /* Поставить контент поверх фона */
   /* padding: 20px; */
   width: 100%;
   box-sizing: border-box;

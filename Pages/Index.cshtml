@@ -6,14 +6,130 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@* <style>
-        body{
-            color:aliceblue;
-            font-family: Georgia, serif;
-        }
-    </style> *@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        font-family: Georgia, serif;
+        background-color: #f8f9fa;
+        color: aliceblue;
+        display: grid; /* Используем grid */
+        place-items: center; /* Центрируем содержимое */
+        grid-template-rows: auto 1fr; /* Создаем 2 строки: авто-высота для заголовка и 1fr для кнопок */
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Constellation</h1>
-    <h5>Ставь цели, формируй привычки, и становись лучшей версией себя!</h5>
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('/фон.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px);
+        z-index: -1;
+    }
+
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Центрируем содержимое внутри контейнера */
+        text-align: center; /* Центрируем текст */
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        margin-bottom: 70px;
+    }
+
+    h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    h4 {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .auth-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .auth-buttons .btn {
+        font-size: 1.5rem;
+        padding: 20px 50px;
+        border-radius: 10px;
+        width: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .auth-buttons .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-login {
+        background-color: #8a61f1e9;
+        color: white;
+        border: none;
+    }
+
+    .btn-login:hover {
+        background-color: #935fd2ce;
+    }
+
+    .btn-register {
+        background-color: #4856c1db;
+        color: white;
+        border: none;
+    }
+
+    .btn-register:hover {
+        background-color: #4f4dc3d9;
+    }
+
+    /* Навигационная панель */
+    header {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    .navbar {
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+       h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: aliceblue;
+        text-shadow: 1px 1px 3px rgba(39, 35, 35, 0.71);
+    }
+</style>
+
+<div class="background"></div>
+
+<div class="content-container">
+    <h2>'Constellation'</h2>
+    <h4>Ставь цели, формируй привычки, и становись лучшей версией себя!</h4>
+    <div class="auth-buttons">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a class="btn btn-login" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">С возвращением, @User.Identity?.Name!</a>
+            <form class="d-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
+                <button type="submit" class="btn btn-register">Выход</button>
+            </form>
+        }
+        else
+        {
+            <a class="btn btn-login" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+            <a class="btn btn-register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+        }
+    </div>
 </div>
