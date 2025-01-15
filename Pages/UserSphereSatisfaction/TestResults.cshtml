@@ -4,41 +4,138 @@
 @{
     ViewData["Title"] = "Результаты теста";
 }
+
 <style>
-    body{
-            color:aliceblue;
-            font-family: Georgia, serif;
+    body {
+        color: aliceblue;
+        font-family: Georgia, serif;
+    }
+      .back {color: #ffffff !important;
+        background-color: rgb(110, 96, 165);
+         padding: 15px 25px; /* Увеличиваем размер кнопок */
+    font-size: 16px; 
+    margin-top: 30px;
         }
+            .content-container {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.381);
+        max-width: 1200px;
+        margin: 50px auto; /* Центрируем контейнер на странице */
+        font-family: Georgia, serif;
+        font-size: 22px; 
+    }
+.list-group-item {
+        width: 45%;
+        margin-bottom: 15px; /* Отступ между элементами */
+        text-align: center;
+    }
+    .sat-level {
+        border-radius: 15px;
+        max-width: 250px;
+         text-align: center;
+         margin: 0 auto; 
+         color: black;
+        font-family: Georgia, serif;
+     
+    }
+    p{font-family: Georgia, serif;
+          font-size: 22px; }
 </style>
-<div class="background"></div>
+
 
 <div class="container mt-5">
     <h2 class="text-center">Результаты теста</h2>
+    <div class="content-container">
+        <!-- Форма для фильтрации -->
+        <form method="get">
+               <input type="hidden" name="userId" value="@Request.Query["userId"]" />
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <label for="month" class="form-label">Месяц:</label>
+                    <select class="form-select" id="month" name="month">
+                        <option value="">Все</option>
+                        @for (int i = 1; i <= 12; i++)
+{
+    var monthName = new DateTime(2000, i, 1).ToString("MMMM");
+    <option value="@i" selected="@(i == Model.FilterMonth ? "selected" : null)">@monthName</option>
+}
 
-    @if (Model.SphereResults != null && Model.SphereResults.Any())
-    {
-        <table class="table table-bordered table-hover mt-4">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Сфера жизни</th>
-                    <th>Уровень удовлетворенности</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var result in Model.SphereResults)
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="year" class="form-label">Год:</label>
+                    <select class="form-select" id="year" name="year">
+                        <option value="">Все</option>
+                        @for (int year = DateTime.Now.Year; year >= 2000; year--)
+{
+    <option value="@year" selected="@(year == Model.FilterYear ? "selected" : null)">@year</option>
+}
+
+                    </select>
+                </div>
+                <div class="col-md-4 align-self-end">
+                    <button type="submit" class="btn btn-primary">Применить фильтр</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Отображение результатов -->
+        @if (Model.SphereResults != null && Model.SphereResults.Any())
+        {
+            <ul class="list-group mt-4">
+                @foreach (var dateGroup in Model.SphereResults.GroupBy(r => r.TestDate))
                 {
-                    <tr>
-                        <td>@result.SphereName</td>
-                        <td>@result.SatisfactionLevel</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <div class="alert alert-warning">Результаты теста отсутствуют.</div>
-    }
+                    var modalId = "modal-" + Guid.NewGuid();
 
-  <a asp-page="/Users/Details" class="btn btn-secondary">Назад в личный кабинет</a>
+                    <li class="list-group-item">
+                        <button type="button" class="btn sat-level" data-bs-toggle="modal" data-bs-target="#@modalId">
+                            <p>Результаты теста за @dateGroup.Key</p>
+                        </button>
+
+                        <!-- Модальное окно -->
+                        <div class="modal fade" id="@modalId" tabindex="-1" aria-labelledby="modalLabel-@modalId" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel-@modalId">Результаты теста за @dateGroup.Key</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Сфера жизни</th>
+                                                    <th>Уровень удовлетворенности</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var result in dateGroup)
+                                                {
+                                                    <tr>
+                                                        <td>@result.SphereName</td>
+                                                        <td>@result.SatisfactionLevel</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="alert alert-warning">Результаты теста отсутствуют.</div>
+        }
+
+        <a asp-page="/Users/Details" class="btn back">Назад в личный кабинет</a>
+    </div>
 </div>

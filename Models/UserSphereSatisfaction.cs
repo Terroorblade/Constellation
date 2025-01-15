@@ -12,6 +12,7 @@ public partial class UserSphereSatisfaction
     public int? UserSpheres { get; set; }
 
     public int? SphereIds { get; set; }
+       public DateTime TestDate { get; set; } 
 
     public virtual SpheresOfLife? SphereIdsNavigation { get; set; } =null!;
 

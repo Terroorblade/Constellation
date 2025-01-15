@@ -45,12 +45,12 @@
 }
 
 /* Стили для кнопок */
-.test-btn, .results-btn {
+.test-btn, .results-btn ,.goals-buttons {
     margin-top: 10px; /* Добавляем отступ между кнопками */
 }
 
 /* Стили для блока с кнопками теста и результатами */
-.test-buttons {
+.test-buttons,.goals-buttons {
     display: flex;
     flex-direction: column; 
     gap: 10px; /* Расстояние между кнопками */
@@ -213,11 +213,16 @@ body{
 
         <!-- Вторая колонка (Цели) -->
         <div class="button-column">
-            <span class="button-label goals-label" >Цели</span>
-               <hr/>
+            <span class="button-label goals-label" >Цели и привычки</span>
+              
+               <div class="goals-buttons">
             <a asp-page="/Users/Goal" asp-route-id="@Model.Users.IdUser" class="goals-btn goals-label">
                 Мои цели
             </a>
+             <a asp-page="/Users/Habit" asp-route-id="@Model.Users.IdUser" class="goals-btn goals-label">
+                Мои привычки
+            </a>
+            </div>
         </div>
 
         <!-- Третья колонка (Тест на анализ сфер жизни) -->

@@ -337,11 +337,24 @@ $(document).on('click', '.delete-event-button', function () {
             $(document).on('change', '.habit-status-checkbox', function () {
                 const habitId = $(this).data('habit-id');
                 const status = $(this).is(':checked');
-                const scheduleDate =$('#tasksForDayModal').data('selectedDate');
+                 const selectedDate = $('#tasksForDayModal').data('selectedDate');
 
-                $.post('/Calendar/UpdateHabitStatus', { habitId,scheduleDate, status })
+                @* $.post('/Calendar/UpdateHabitStatus', { habitId,scheduleDate, status })
                     .done(() => alert('Статус обновлен!'))
-                    .fail(() => alert('Ошибка обновления статуса.'));
+                    .fail(() => alert('Ошибка обновления статуса.')); *@
+                    $.ajax({
+        url: '/Calendar/UpdateHabitStatus',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ habitId: habitId, selectedDate: selectedDate, status: status }),
+        success: function () {
+            alert('Статус привычки обновлен успешно!');
+        },
+        error: function () {
+            alert('Ошибка при обновлении статуса привычки.');
+        }
+    });
+
             });
         });
     </script>

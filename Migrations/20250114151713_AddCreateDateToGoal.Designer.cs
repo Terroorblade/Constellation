@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebApplication1.Models;
@@ -11,9 +12,11 @@ using WebApplication1.Models;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ConsttestContext))]
-    partial class ConsttestContextModelSnapshot : ModelSnapshot
+    [Migration("20250114151713_AddCreateDateToGoal")]
+    partial class AddCreateDateToGoal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -375,15 +378,10 @@ namespace WebApplication1.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("status");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
                     b.HasKey("HabitId")
                         .HasName("habit_pkey");
 
                     b.HasIndex("GoalHabit");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("habit", (string)null);
                 });
@@ -612,16 +610,7 @@ namespace WebApplication1.Migrations
                         .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("habit_goal_habit_fkey");
 
-                    b.HasOne("WebApplication1.Models.User", "User")
-                        .WithMany("Habits")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_habit_users_UserId");
-
                     b.Navigation("GoalHabitNavigation");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.HabitOfTheDay", b =>
@@ -701,8 +690,6 @@ namespace WebApplication1.Migrations
                     b.Navigation("DailySchedules");
 
                     b.Navigation("Goals");
-
-                    b.Navigation("Habits");
 
                     b.Navigation("UserSphereSatisfactions");
                 });

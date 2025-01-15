@@ -11,9 +11,8 @@ public partial class Goal
 
     public string? Description { get; set; }
 
-    // public DateOnly? CreateDate { get; set; }
-
     public DateOnly? Deadline { get; set; }
+    public DateOnly? CreateDate { get; set; }
 
     public bool Status { get; set; }
 

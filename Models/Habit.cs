@@ -11,7 +11,7 @@ public partial class Habit
 
     public string? Description { get; set; }
 
-    public TimeSpan Frequency { get; set; }
+    public int Frequency { get; set; }
 
     public DateTime? Reminder { get; set; }
 
@@ -22,4 +22,7 @@ public partial class Habit
     public virtual Goal? GoalHabitNavigation { get; set; }
 
     public virtual ICollection<HabitOfTheDay> HabitOfTheDays { get; set; } = new List<HabitOfTheDay>();
+      // Добавляем связь с пользователем
+        public int UserId { get; set; }
+        public virtual User? User { get; set; }
 }

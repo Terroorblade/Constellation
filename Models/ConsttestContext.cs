@@ -87,8 +87,8 @@ public partial class ConsttestContext :IdentityDbContext<IdentityUser>
             entity.ToTable("goal");
 
             entity.Property(e => e.GoalId).HasColumnName("goal_id");
-            // entity.Property(e => e.CreateDate).HasColumnName("create_date");
             entity.Property(e => e.Deadline).HasColumnName("deadline");
+            entity.Property(e => e.CreateDate).HasColumnName("create_date");
             entity.Property(e => e.Description)
                 .HasMaxLength(100)
                 .HasColumnName("description");
@@ -133,6 +133,13 @@ public partial class ConsttestContext :IdentityDbContext<IdentityUser>
                 .HasForeignKey(d => d.GoalHabit)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("habit_goal_habit_fkey");
+
+            entity.HasOne(h => h.User)
+        .WithMany(u => u.Habits)
+        .HasForeignKey(h => h.UserId)
+        .OnDelete(DeleteBehavior.Cascade) .IsRequired().HasConstraintName("FK_habit_users_UserId");;  
+    
+
         });
 
         modelBuilder.Entity<HabitOfTheDay>(entity =>
@@ -194,6 +201,12 @@ modelBuilder.Entity<User>(static entity =>
           .WithOne(g => g.User)
           .HasForeignKey(g => g.UserId)
           .OnDelete(DeleteBehavior.Cascade);
+
+           entity.HasMany(u => u.Habits)
+          .WithOne(p => p.User)
+          .HasForeignKey(p => p.UserId)
+          .OnDelete(DeleteBehavior.Cascade);
+
 
 });
         modelBuilder.Entity<UserSphereSatisfaction>(entity =>

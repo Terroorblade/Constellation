@@ -1,0 +1,298 @@
+@page
+@model WebApplication1.Pages.Users.Pages_Users_Habit
+@{
+    ViewData["Title"] = "Цели и привычки";
+}
+<style>
+    .column-left,
+    .column-right {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .column-left {
+        border-right: 2px solid #ccc;
+    }
+
+    .header-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header-buttons .btn {
+        margin-top: 10px;
+    }
+
+    .back {
+        color: #ffffff !important;
+        background-color: rgb(118, 139, 176);
+    }
+
+    .addgoal {
+        color: #ffffff !important;
+        background-color: rgb(203, 101, 221);
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+    .bg-blue {
+        background-color: #add8e6d3;
+    }
+
+    .bg-violet {
+        background-color: #dda0ddbe;
+    }
+
+    .addgoal:hover {
+        background-color: #ca54ca;
+    }
+
+    .back:hover {
+        background-color: #b6a0dd;
+    }
+
+    body {
+        color: aliceblue;
+        font-family: Georgia, serif;
+    }
+
+    .list-group-item {
+        width: 450px;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .modal-title {
+        color: black;
+    }
+
+    #goalDetailsModal .modal-body {
+        color: black;
+    }
+
+    .content-container {
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.381);
+        max-width: 1200px;
+        margin-left: 70px;
+    }
+
+    /* Added styles for colored backgrounds */
+    .habit-incomplete {
+        background-color: #add8e6d3; /* Light blue for incomplete habits */
+    }
+
+    .habit-completed {
+        background-color: #dda0ddbe; /* Light violet for completed habits */
+    }
+
+    .habit-status {
+        margin-left: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+</style>
+
+<div class="background"></div>
+
+<div class="container mt-4">
+    <div class="header-buttons">
+        <!-- Back Button -->
+        <a asp-page="/Users/Details" class="btn back">Назад в личный кабинет</a>
+        <!-- Add Habit Button -->
+        @* <button class="btn addgoal" id="openAddHabitModalButton">Добавить привычку</button> *@
+    </div>
+    <h2 class="text-center">Мои привычки</h2>
+    <hr />
+
+    <!-- Divide page into two columns -->
+    <div class="row">
+        <div class="content-container">
+            <div class="col-md-6 column-left">
+                <h3>Не выполнено</h3>
+                <ul id="habitListIncomplete" class="list-group mb-3">
+                    <!-- Incomplete habits will be added here -->
+                </ul>
+            </div>
+            <div class="col-md-6 column-right">
+                <h3>Выполнено</h3>
+                <ul id="habitListCompleted" class="list-group mb-3">
+                    <!-- Completed habits will be added here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for habit details -->
+<div class="modal fade" id="habitDetailsModal" tabindex="-1" aria-labelledby="habitDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="habitDetailsModalLabel">Детали привычки</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="habitDetails">
+                    <!-- Habit details will appear here -->
+                </div>
+                <button class="btn btn-primary mt-3" id="createTaskButton">Начало формирования привычки</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for adding a habit -->
+<div class="modal fade" id="habitModal" tabindex="-1" aria-labelledby="habitModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="habitModalLabel">Добавить привычку</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addHabitForm">
+                    <div class="mb-3">
+                        <label for="habitName" class="form-label">Название</label>
+                        <input type="text" class="form-control" id="habitName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="habitDescription" class="form-label">Описание</label>
+                        <textarea class="form-control" id="habitDescription" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="habitFrequency" class="form-label">Частота выполнения (раз в .. день/дней)</label>
+                        <input type="number" class="form-control" id="habitFrequency" min="1" required />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" id="saveHabitButton">Сформировать привычку</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+    // Fetch habits and display them
+    $.get("/Habits/GetHabits", function(habits) {
+        var incompleteHabits = habits.filter(h => !h.status);
+        var completedHabits = habits.filter(h => h.status);
+
+        // Add incomplete habits to the list
+        incompleteHabits.forEach(habit => {
+            const habitHtml = `
+                <li class="list-group-item habit-incomplete" data-habit-id="${habit.id}">
+                    <strong>${habit.name}</strong><br>
+                    <input type="checkbox" class="status-checkbox" data-habit-id="${habit.id}">
+                    <label>Не выполнено</label>
+                    <button class="btn btn-danger btn-sm delete-habit-button" data-habit-id="${habit.id}" style="float: right;">Удалить</button>
+                </li>
+            `;
+            $('#habitListIncomplete').append(habitHtml);
+        });
+
+        // Add completed habits to the list
+        completedHabits.forEach(habit => {
+            const habitHtml = `
+                <li class="list-group-item habit-completed" data-habit-id="${habit.id}">
+                    <strong>${habit.name}</strong><br>
+                    <input type="checkbox" class="status-checkbox" data-habit-id="${habit.id}" checked>
+                    <label>Выполнено</label>
+                    <button class="btn btn-danger btn-sm delete-habit-button" data-habit-id="${habit.id}" style="float: right;">Удалить</button>
+                </li>
+            `;
+            $('#habitListCompleted').append(habitHtml);
+        });
+    });
+
+    // Mark habit as completed or not
+  $(document).on('change', '.status-checkbox', function() {
+    var habitId = $(this).data('habit-id');
+    var status = $(this).prop('checked');
+
+    // Create the request object
+    var requestData = {
+        HabitId: habitId,
+        Status: status
+    };
+
+    // Send the request using $.ajax
+    $.ajax({
+        type: "POST",
+        url: "/Habits/UpdateHabitStatus",
+        contentType: "application/json", // Ensure content type is JSON
+        data: JSON.stringify(requestData), // Convert the object to JSON
+        success: function(response) {
+            // Update the habit status visually
+            if (status) {
+                $(`li[data-habit-id=${habitId}]`).removeClass('habit-incomplete').addClass('habit-completed');
+                $(`li[data-habit-id=${habitId}] label`).text('Выполнено');
+                $('#habitListCompleted').append($(`li[data-habit-id=${habitId}]`)); // Move to completed list
+            } else {
+                $(`li[data-habit-id=${habitId}]`).removeClass('habit-completed').addClass('habit-incomplete');
+                $(`li[data-habit-id=${habitId}] label`).text('Не выполнено');
+                $('#habitListIncomplete').append($(`li[data-habit-id=${habitId}]`)); // Move to incomplete list
+            }
+            alert('Статус обновлен!');
+        },
+        error: function() {
+            alert('Ошибка при обновлении статуса.');
+        }
+    });
+});
+
+    // Delete habit
+$(document).on('click', '.delete-habit-button', function() {
+    const habitId = $(this).data('habit-id');
+
+    $.ajax({
+        url: "/Habits/DeleteHabit",
+        type: "POST",
+        contentType: "application/json", // Указываем тип содержимого как JSON
+        data: JSON.stringify(habitId), // Отправляем данные в формате JSON
+        success: function() {
+                alert('Привычка удалена успешно!');
+                  location.reload(); 
+        },
+        error: function(xhr, status, error) {
+           alert('Произошла ошибка при удалении привычки.'); // Для отладки выводим ошибку в консоль
+        }
+    });
+});
+
+    // Add Habit Form Submission
+    @* $('#saveHabitButton').click(function() {
+        var habitName = $('#habitName').val();
+        var habitDescription = $('#habitDescription').val();
+        var habitFrequency = $('#habitFrequency').val();
+
+        var habitRequest = {
+            habitName: habitName,
+            habitDescription: habitDescription,
+            habitFrequency: habitFrequency
+        };
+
+        $.post("/Habits/AddHabit", habitRequest, function(response) {
+            location.reload();  // Reload the page to update the list
+        }).fail(function() {
+            alert('Ошибка при добавлении привычки.');
+        });
+    }); *@
+});
+
+    </script>
+}

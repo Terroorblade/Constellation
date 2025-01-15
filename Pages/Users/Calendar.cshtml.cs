@@ -147,21 +147,28 @@ public IActionResult DeleteEvent([FromBody] int eventId)
 
     return Ok();
 }
+public class UpdateHabitStatusRequest
+{
+    public int HabitId { get; set; }
+    public DateOnly SelectedDate { get; set; }
+    public bool Status { get; set; }
+}
+
 [HttpPost("UpdateHabitStatus")]
-public IActionResult UpdateHabitStatus(int habitId, DateOnly scheduleDate, bool status)
+public IActionResult UpdateHabitStatus([FromBody] UpdateHabitStatusRequest request)
 {
     var userId = User.Identity?.Name;
     var user = _context.Users.FirstOrDefault(u => u.Username == userId);
 
     if (user == null) return Unauthorized();
-
+ var selectedDate = request.SelectedDate;
     var habitDayToUpdate = _context.HabitOfTheDays
         .Include(h => h.ScheduleDayNavigation)
-        .FirstOrDefault(h => h.HabitDay == habitId && h.ScheduleDayNavigation.ScheduleData == scheduleDate);
+        .FirstOrDefault(h => h.HabitDayId == request.HabitId && h.ScheduleDayNavigation.ScheduleData == selectedDate);
 
     if (habitDayToUpdate == null) return NotFound();
 
-    habitDayToUpdate.Status = status;
+    habitDayToUpdate.Status = request.Status;
     _context.SaveChanges();
 
     return Ok();

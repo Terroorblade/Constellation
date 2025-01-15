@@ -18,8 +18,9 @@ public class GoalController : Controller
         _context = context;
         _userManager = userManager;
     }
-
-    [HttpGet("GetGoals")]
+public int? FilterGoalMonth { get; set; }
+    public int? FilterGoalYear { get; set; }
+     [HttpGet("GetGoals")]
     public IActionResult GetGoals()
     {
         var userId = User.Identity?.Name; // Получение текущего пользователя
@@ -48,7 +49,7 @@ public class GoalController : Controller
 
         return Json(goals);
     }
-
+    
   [HttpPost("AddGoal")]
 public IActionResult AddGoal([FromBody] Goal model)
 {
@@ -141,60 +142,98 @@ var goal = _context.Goals
     return Json(goalDetails);
 }
 
+// Модель для запроса
+public class CreateHabitRequest
+{
+    public int goalId { get; set; }
+    public string habitName { get; set; }
+    public string habitDescription { get; set; }
+    public int habitFrequency { get; set; }
+    public int UserId { get; set; }
+}
 [HttpPost("CreateHabitForGoal")]
 
-public IActionResult CreateHabitForGoal(int goalId)
+public IActionResult CreateHabitForGoal([FromBody]CreateHabitRequest request)
 {
-    var userId = User.Identity?.Name;
+     var userId = User.Identity?.Name;
     var user = _context.Users.FirstOrDefault(u => u.Username == userId);
 
     if (user == null) return Unauthorized();
 
-    var goal = _context.Goals.Include(g => g.Habits).FirstOrDefault(g => g.GoalId == goalId && g.UserId == user.IdUser);
+    var habitsCount = _context.Habits.Count(h => h.GoalHabitNavigation.UserId == user.IdUser && !h.Status);
+    if (habitsCount >= 3)
+    {
+        return BadRequest("Вы не можете создать более 3 активных привычек одновременно.");
+    }
+
+    var goal = _context.Goals.Include(g => g.Habits).FirstOrDefault(g => g.GoalId == request.goalId && g.UserId == user.IdUser);
     if (goal == null) return NotFound();
 
     // Создание привычки по цели
-    var habit = new Habit
+   var habit = new Habit
     {
-        Name = goal.Name,
-        Description = goal.Description,
-        Frequency = TimeSpan.FromDays(1), // Устанавливаем частоту привычки на ежедневную
+        Name = request.habitName,
+        Description = request.habitDescription,
+        Frequency = request.habitFrequency,
         Status = false,
-        GoalHabit = goal.GoalId
+        GoalHabit = request.goalId,
+          UserId = user.IdUser
     };
 
     _context.Habits.Add(habit);
     _context.SaveChanges();
 
-    // Добавляем привычку в расписание на 28 дней вперёд
+     // Добавляем привычку в расписание в зависимости от указанной частоты
     for (int i = 0; i < 28; i++)
     {
-         var scheduleDate = DateOnly.FromDateTime(DateTime.Now.AddDays(i));
-        var schedule = _context.DailySchedules.FirstOrDefault(ds => ds.UserSchedule == user.IdUser && ds.ScheduleData == scheduleDate);
-
-        if (schedule == null)
+        if (request.habitFrequency == 0 || request.habitFrequency < 0 || i % request.habitFrequency == 0)
         {
-            schedule = new DailySchedule
+            var scheduleDate = DateOnly.FromDateTime(DateTime.Now.AddDays(i));
+            var schedule = _context.DailySchedules.FirstOrDefault(ds => ds.UserSchedule == user.IdUser && ds.ScheduleData == scheduleDate);
+
+            if (schedule == null)
             {
-                ScheduleData = scheduleDate,
-                UserSchedule = user.IdUser
+                schedule = new DailySchedule
+                {
+                    ScheduleData = scheduleDate,
+                    UserSchedule = user.IdUser
+                };
+                _context.DailySchedules.Add(schedule);
+                _context.SaveChanges();
+            }
+
+            var habitOfTheDay = new HabitOfTheDay
+            {
+                HabitDay = habit.HabitId,
+                ScheduleDay = schedule.ScheduleId,
+                Status = false
             };
-            _context.DailySchedules.Add(schedule);
-            _context.SaveChanges();
+
+            _context.HabitOfTheDays.Add(habitOfTheDay);
         }
-
-        var habitOfTheDay = new HabitOfTheDay
-        {
-            HabitDay = habit.HabitId,
-            ScheduleDay = schedule.ScheduleId,
-            Status = false
-        };
-
-        _context.HabitOfTheDays.Add(habitOfTheDay);
     }
+
     _context.SaveChanges();
 
     return Ok();
 }
 
+}
+public class GoalViewModel
+{
+    public int GoalId { get; set; }
+    public string Name { get; set; }
+    public DateTime Date { get; set; }
+    public string Deadline { get; set; }
+    public string Description { get; set; }
+    public string Sphere { get; set; }
+    public string Status { get; set; }
+}
+
+// Модель страницы целей
+public class GoalsPageViewModel
+{
+    public int? FilterGoalMonth { get; set; }
+    public int? FilterGoalYear { get; set; }
+    public List<GoalViewModel> Goals { get; set; }
 }

@@ -1,179 +1,109 @@
-
-using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApplication1.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using WebApplication1.Models;
 
-namespace WebApplication1.Pages.Users
+namespace WebApplication1.Pages
 {
-    [Authorize(Roles = "admin,user")]
-    public class TestingModel : PageModel
+    public class TestModel : PageModel
     {
-         private readonly ConsttestContext _context;
-    private readonly UserManager<IdentityUser> _userManager;
+        private readonly ConsttestContext _context;
 
-    public TestingModel(ConsttestContext context, UserManager<IdentityUser> userManager)
-    {
-        _context = context;
-        _userManager = userManager;
-    }
-
-    [BindProperty]
-    public TestViewModel TestModel { get; set; } = new();
-
-    public async Task<IActionResult> OnGetAsync()
-    {
-        var userId = _userManager.GetUserId(User);
-        if (userId == null)
+        public TestModel(ConsttestContext context)
         {
-            return RedirectToPage("/Identity/Account/Login");
+            _context = context;
         }
 
-        var user = await _context.Users
-            .Include(u => u.UserSphereSatisfactions)
-            .ThenInclude(uss => uss.SphereIdsNavigation)
-            .FirstOrDefaultAsync(u => u.IdentityUserId == userId);
+        public List<SpheresOfLife> Spheres { get; set; } = new List<SpheresOfLife>();
 
-        if (user == null)
-        {
-            return NotFound("User not found.");
-        }
+        [BindProperty]
+        public Dictionary<int, WebApplication1.Models.UserSphereSatisfaction> SphereSatisfactions { get; set; } = new Dictionary<int, WebApplication1.Models.UserSphereSatisfaction>();
 
-        TestModel.IdentityUserId = user.IdentityUserId;
-
-        // Пример вопросов
-        TestModel.Questions = new List<SphereQuestion>
-        {
-            new() { SphereName = "Саморазвитие", QuestionText = "Как вы оцениваете свои успехи в изучении нового?" },
-            new() { SphereName = "Саморазвитие", QuestionText = "Насколько вы довольны временем, которое уделяете своему развитию?" },
-
-            new() { SphereName = "Здоровье", QuestionText = "Как вы оцениваете ваше физическое состояние?" },
-            new() { SphereName = "Здоровье", QuestionText = "Как вы оцениваете вашу энергию?" },
-
-            new() { SphereName = "Отдых", QuestionText = "Насколько вы довольны качеством вашего отдыха?" },
-            new() { SphereName = "Отдых", QuestionText = "Как вы оцениваете время, которое вы уделяете отдыху?" },
-
-            new() { SphereName = "Окружение", QuestionText = "Как вы оцениваете поддержку, которую получаете от окружения?" },
-            new() { SphereName = "Окружение", QuestionText = "Насколько вы довольны отношениями с близкими людьми?" },
-
-            new() { SphereName = "Любовь", QuestionText = "Как вы оцениваете ваши романтические отношения?" },
-            new() { SphereName = "Любовь", QuestionText = "Насколько вы довольны эмоциональной близостью в отношениях?" },
-
-            new() { SphereName = "Карьера", QuestionText = "Как вы оцениваете свою профессиональную реализацию?" },
-            new() { SphereName = "Карьера", QuestionText = "Как вы оцениваете ваш карьерный рост?" },
-
-            new() { SphereName = "Финансы", QuestionText = "Как вы оцениваете вашу финансовую стабильность?" },
-            new() { SphereName = "Финансы", QuestionText = "Насколько вы довольны уровнем ваших доходов?" },
-
-            new() { SphereName = "Духовность", QuestionText = "Как вы оцениваете связь с вашими внутренними ценностями?" },
-            new() { SphereName = "Духовность", QuestionText = "Насколько вы довольны временем, которое вы уделяете духовным практикам?" },        
-        };
-
-        return Page();
-    }
-
-[HttpPost("SaveTestResults")]
-public IActionResult SaveTestResults([FromBody] TestViewModel testModel)
+public async Task OnGetAsync()
 {
-    var identityUserId = _userManager.GetUserId(User);
-    if (identityUserId == null)
+    // Загружаем все сферы жизни
+    Spheres = await _context.SpheresOfLives.ToListAsync();
+
+    // ID текущего пользователя
+    var userId = User.Identity.Name;
+    var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == userId);
+
+    if (user != null)
     {
-        return NotFound("User not found.");
-    }
+        // Загружаем данные удовлетворенности пользователя из базы
+        var existingSatisfactions = await _context.UserSphereSatisfactions
+            .Where(s => s.UserSpheres == user.IdUser)
+            .ToListAsync();
 
-    // Получаем пользователя синхронно
-    var user = _context.Users
-        .Include(u => u.UserSphereSatisfactions)
-        .FirstOrDefault(u => u.IdentityUserId == identityUserId);
-
-    if (user == null)
-    {
-        return NotFound("User not found.");
-    }
-
-    // Группируем вопросы по SphereName
-    var sphereResults = testModel.CalculateSphereSatisfaction();
-
-    foreach (var (sphereName, satisfactionLevel) in sphereResults)
-    {
-        Console.WriteLine($"Сфера: {sphereName}, Уровень удовлетворенности: {satisfactionLevel}");
-
-        // Получаем список всех вопросов по данной сфере
-        var questionsInSphere = testModel.Questions.Where(q => q.SphereName == sphereName).ToList();
-        
-        // Находим или создаем запись о удовлетворенности для текущей сферы
-        var existingSatisfaction = user.UserSphereSatisfactions
-            .FirstOrDefault(uss => uss.SphereIdsNavigation.Name == sphereName);
-
-        double newSatisfactionLevel = satisfactionLevel / questionsInSphere.Count;
-
-        if (existingSatisfaction != null)
+        foreach (var sphere in Spheres)
         {
-            // Если запись существует, обновляем ее
-            existingSatisfaction.SatisfactionLevel = (double)Math.Round(newSatisfactionLevel, 2); // округление до 2 знаков после запятой
-        }
-        else
-        {
-            // Если записи нет, создаем новую
-            var sphere = _context.SpheresOfLives
-                .FirstOrDefault(s => s.Name == sphereName);
-
-            if (sphere == null) continue;
-
-            var newSatisfaction = new WebApplication1.Models.UserSphereSatisfaction
+            // Если данные существуют, загружаем их, иначе устанавливаем значение по умолчанию
+            var satisfaction = existingSatisfactions.FirstOrDefault(s => s.SphereIds == sphere.SphereId);
+            SphereSatisfactions[sphere.SphereId] = satisfaction ?? new WebApplication1.Models.UserSphereSatisfaction
             {
-                UserSpheres = user.IdUser, // Используем IdUser у пользователя
-                SphereIds = sphere.SphereId, // Используем SphereId у сферы
-                SatisfactionLevel = (double)Math.Round(newSatisfactionLevel, 2) // округляем до 2 знаков
+                SatisfactionLevel = 0
             };
-
-            _context.UserSphereSatisfactions.Add(newSatisfaction);
         }
     }
-
-    // Сохраняем изменения в базе данных
-    _context.SaveChanges();
-
-    return new StatusCodeResult(200);  // Возвращаем статус 200 OK
-}
-
-
-
-    public class SphereQuestion
-{
-    public string SphereName { get; set; } = string.Empty;
-    public string QuestionText { get; set; } = string.Empty;
- public short SatisfactionLevel { get; set; } = 0;
-}
-
-    public class TestViewModel
-{
-    //  public int IdUser { get; set; }
-    public string IdentityUserId { get; set; }
-    public List<SphereQuestion> Questions { get; set; } = new List<SphereQuestion>();
-
-   public Dictionary<string, double> CalculateSphereSatisfaction()
-{
-    return Questions
-        .GroupBy(q => q.SphereName)
-        .ToDictionary(
-            g => g.Key,
-            g => 
+    else
+    {
+        // Если пользователь не найден, создаем пустой словарь
+        foreach (var sphere in Spheres)
+        {
+            SphereSatisfactions[sphere.SphereId] = new WebApplication1.Models.UserSphereSatisfaction
             {
-                // Вычисляем средний уровень удовлетворенности и ограничиваем его диапазоном 0-100
-                var averageSatisfaction = g.Average(q => q.SatisfactionLevel);
-                return Math.Clamp(averageSatisfaction, 0, 10); // Math.Clamp ограничивает значение
-            }
-        );
-}
+                SatisfactionLevel = 0
+            };
+        }
+    }
 }
 
-}
+
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                // Если модель не валидна, загружаем сферы жизни для повторного отображения
+                Spheres = await _context.SpheresOfLives.ToListAsync();
+                return Page();
+            }
+
+            // ID текущего пользователя
+            var userId = User.Identity.Name; // Предполагается, что в Identity хранится UserName
+            var user = _context.Users.FirstOrDefault(u => u.Username == userId);
+
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Пользователь не найден.");
+                Spheres = await _context.SpheresOfLives.ToListAsync();
+                return Page();
+            }
+
+            foreach (var satisfaction in SphereSatisfactions)
+            {
+                var satisfactionEntity = new WebApplication1.Models.UserSphereSatisfaction
+                {
+                    SatisfactionLevel = satisfaction.Value.SatisfactionLevel,
+                    UserSpheres = user.IdUser,
+                    SphereIds = satisfaction.Key,
+                    TestDate = DateTime.UtcNow
+
+                };
+
+                _context.UserSphereSatisfactions.Add(satisfactionEntity);
+            }
+
+            await _context.SaveChangesAsync();
+
+            TempData["Message"] = "Данные успешно сохранены!";
+            // return RedirectToPage("/Users/Details");
+               return RedirectToPage("/Users/Details");
+        }
+    }
 }
